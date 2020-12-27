@@ -1,6 +1,6 @@
 #include <iostream>
 
-int main() {
+int mainClient() {
     std::cout << "Hello, World!" << std::endl;
     return 0;
 }

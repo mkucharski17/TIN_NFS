@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/michal/Desktop/tin/TIN_NFS/server/main.cpp
+unistd.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+iostream
+-
+

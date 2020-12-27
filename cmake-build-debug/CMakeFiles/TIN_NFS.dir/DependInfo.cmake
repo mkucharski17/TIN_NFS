@@ -4,7 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/michal/Desktop/tin/TIN_NFS/main.cpp" "/home/michal/Desktop/tin/TIN_NFS/cmake-build-debug/CMakeFiles/TIN_NFS.dir/main.cpp.o"
+  "/home/michal/Desktop/tin/TIN_NFS/client/main.cpp" "/home/michal/Desktop/tin/TIN_NFS/cmake-build-debug/CMakeFiles/TIN_NFS.dir/client/main.cpp.o"
+  "/home/michal/Desktop/tin/TIN_NFS/server/main.cpp" "/home/michal/Desktop/tin/TIN_NFS/cmake-build-debug/CMakeFiles/TIN_NFS.dir/server/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

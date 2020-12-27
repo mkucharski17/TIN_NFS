@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/TIN_NFS.dir/main.cpp.o"
+  "CMakeFiles/TIN_NFS.dir/client/main.cpp.o"
+  "CMakeFiles/TIN_NFS.dir/server/main.cpp.o"
   "TIN_NFS"
   "TIN_NFS.pdb"
 )

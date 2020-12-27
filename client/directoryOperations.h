@@ -1,7 +1,3 @@
-//
-// Created by Michal on 27.12.2020.
-//
-
 #ifndef CLIENT_DIRECTORYOPERATIONS_H
 #define CLIENT_DIRECTORYOPERATIONS_H
 

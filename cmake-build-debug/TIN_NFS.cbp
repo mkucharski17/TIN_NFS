@@ -84,6 +84,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/main.cpp">
+			<Option target="TIN_NFS"/>
+		</Unit>
 		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/data_structures/client_msg.h">
 			<Option target="TIN_NFS"/>
 		</Unit>
@@ -93,7 +96,7 @@
 		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/data_structures/server_msg.h">
 			<Option target="TIN_NFS"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/main.cpp">
+		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/server/main.cpp">
 			<Option target="TIN_NFS"/>
 		</Unit>
 		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/CMakeLists.txt">

@@ -1,7 +1,3 @@
-//
-// Created by michal on 12/27/20.
-//
-
 #ifndef TIN_NFS_CODES_H
 #define TIN_NFS_CODES_H
 #define ERROR -1;

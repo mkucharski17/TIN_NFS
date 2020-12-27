@@ -1,7 +1,3 @@
-//
-// Created by michal on 12/27/20.
-//
-
 #ifndef TIN_NFS_SERVER_MSG_H
 #define TIN_NFS_SERVER_MSG_H
 struct server_msg {

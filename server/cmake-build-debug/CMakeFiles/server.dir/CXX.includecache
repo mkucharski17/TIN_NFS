@@ -8,6 +8,8 @@
 
 /home/michal/Desktop/tin/TIN_NFS/server/data_structures/client_msg.h
 
+/home/michal/Desktop/tin/TIN_NFS/server/data_structures/codes.h
+
 /home/michal/Desktop/tin/TIN_NFS/server/main.cpp
 unistd.h
 -
@@ -19,4 +21,6 @@ iostream
 -
 data_structures/client_msg.h
 /home/michal/Desktop/tin/TIN_NFS/server/data_structures/client_msg.h
+data_structures/codes.h
+/home/michal/Desktop/tin/TIN_NFS/server/data_structures/codes.h
 

@@ -1,7 +1,8 @@
-#ifndef TIN_NFS_CLIENT_MSG_H
-#define TIN_NFS_CLIENT_MSG_H
-struct client_msg {
-    unsigned short request_type;
+#ifndef TIN_NFS_SERVER_MSG_H
+#define TIN_NFS_SERVER_MSG_H
+struct server_msg {
+    unsigned short response_type;
+    unsigned short error;
     union {
         connect connection;
         open open;
@@ -15,63 +16,54 @@ struct client_msg {
         closedir closedir;
         readdir readdir;
         disconnect disconnect1;
-    } arguments;
+    } response
 }
 
-typedef
-struct connect {
-    char *login;
-    char *password;
+typedef struct connect {
+    unsigned int new_server_port;
 } connect;
 
 typedef struct open {
-    char *path;
-    unsigned int oflag;
-    unsigned int mode;
+    unsigned int fd;
 } open;
 
 typedef struct close {
-    unsigned int fd;
 } close;
 
 typedef struct read {
-    unsigned int fd;
-    unsigned int read_size;
+    unsigned int size;
+    unsigned int *data;
 } read;
 
 typedef struct write {
-    unsigned int fd;
-    unsigned int write_size;
-    void *data;
+    unsigned int size;
 } write;
 
 typedef struct lseek {
-    unsigned int fd;
     unsigned int offset;
-    unsigned int whence;
 } lseek;
 
 typedef struct unlink {
-    char *path;
 } unlink;
 
 
 typedef struct fstat {
-    unsigned int fd;
+    //todo zdefiniuj struskturę stat
 } fstat;
 
 typedef struct opendir {
-    char *path;
+    unsigned int dir_fd
 } opendir;
 
 typedef struct closedir {
-    unsigned int dir_fd;
+
 } closedir;
 
 typedef struct readdir {
-    unsigned int dir_fd;
+    char *name
 } readdir;
 
 typedef struct disconnect {
 } disconnect;
-#endif //TIN_NFS_CLIENT_MSG_H
+
+#endif //TIN_NFS_SERVER_MSG_H

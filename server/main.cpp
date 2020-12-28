@@ -2,6 +2,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <iostream>
+#include "data_structures/client_msg.h"
 
 void run_server(int);
 
@@ -65,11 +66,16 @@ void run_server(int portNumber) {
 void getDataFromSocket(int new_socket) {
     char *buf = new char[1461];
     int bytes = recv(new_socket, buf, 1000, 0);
-    if(bytes <= 0 ){
+    if (bytes <= 0) {
         perror("receive");
         exit(EXIT_FAILURE);
     }
-    std::string str(buf);
-    std::cout << bytes << " " << str << std::endl;
-    std::cout.flush();
+    auto clientAuthRequest = (client_msg *) buf;
+    std::cout << "received bytes : " << bytes << std::endl;
+    if (clientAuthRequest->request_type == 0) {
+        std::cout << " request type : " << clientAuthRequest->request_type << std::endl;
+        std::cout<<"login : "<<clientAuthRequest->arguments.connection.login<<"\n";
+        std::cout<<"password : "<<clientAuthRequest->arguments.connection.password<<"\n";
+
+    }std::cout.flush();
 }

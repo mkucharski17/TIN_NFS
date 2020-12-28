@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+../data_structures/client_msg.h
+
+../data_structures/codes.h
+
 /home/michal/Desktop/tin/TIN_NFS/client/main.cpp
 sys/socket.h
 -

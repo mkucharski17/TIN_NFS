@@ -17,8 +17,6 @@ sys/socket.h
 -
 netinet/in.h
 -
-stdio.h
--
 string.h
 -
 arpa/inet.h

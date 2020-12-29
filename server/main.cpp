@@ -89,7 +89,6 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
         default:
             perror("unknown request type");
             exit(EXIT_FAILURE);
-
     }
 
     send(new_socket, response, sizeof(server_msg), 0);
@@ -103,7 +102,7 @@ void handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
     // na razie sprawdzanie dla przykladowych danych login:michal haslo:haslo
     auto *response_auth = (server_msg *) malloc(sizeof(server_msg));
     if (strcmp(clientAuthMsg->arguments.connection.password, "haslo") == 0) {
-        response_auth->response_type = AUTHORIZATION_RESPONSE;
+        response_auth->response_type = CONNECTION_RESPONSE;
         response_auth->response = {
                 .connection = {
                         8081,

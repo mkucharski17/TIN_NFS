@@ -1,7 +1,6 @@
 
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <stdio.h>
 #include <string.h>
 #include <arpa/inet.h>
 #include <iostream>
@@ -23,10 +22,10 @@ int main() {
                     }
             }
     };
-    sendMessageAndGetResponse((char *) "127.0.0.1", 8080, &input);
+    int result = sendMessageAndGetResponse((char *) "127.0.0.1", 8080, &input);
 
 
-    return 0;
+    return result;
 
 }
 
@@ -63,11 +62,14 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, struct client_msg *
 
 
     serverResponseMessage = (server_msg *) response;
-    switch (serverResponseMessage->response_type ) {
-        case CONNECTION_RESPONSE
+    switch (serverResponseMessage->response_type) {
+        case CONNECTION_RESPONSE:
+            std::cout << "new port: " << serverResponseMessage->response.connection.new_server_port << std::endl;
+            break;
+        default:
+            std::cout << "unknown response type"<<std::endl;
+            return ERROR;
 
     }
-    if (serverResponseMessage->response_type == CONNECTION_RESPONSE) {
-        std::cout << "new port: " << serverResponseMessage->response.connection.new_server_port << std::endl;
-    }
+    return OK;
 }

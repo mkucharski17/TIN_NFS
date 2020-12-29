@@ -9,7 +9,6 @@
 /// zwraca: -1 gdy błąd, deskryptor pliku gdy operacja udana
 /// należy zaimplementować co najmniej następujące tryby otwarcia pliku:
 /// O_RDONLY, O_WRONLY, O_RDWR, O_CREAT
-int mynfs_open(char *host, char *path, int oflag, int mode);
 
 int mynfs_read();
 

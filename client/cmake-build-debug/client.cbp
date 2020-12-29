@@ -86,10 +86,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/authorization/authorization.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/authorization/authorization.h">
+			<Option target="client"/>
+		</Unit>
 		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/data_structures">
 			<Option target="client"/>
 		</Unit>
 		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/directoryOperations.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/file/open/open.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/file/open/open.h">
 			<Option target="client"/>
 		</Unit>
 		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/fileOperations.cpp">
@@ -99,6 +111,12 @@
 			<Option target="client"/>
 		</Unit>
 		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/main.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/send_message/send_message.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/send_message/send_message.h">
 			<Option target="client"/>
 		</Unit>
 		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/CMakeLists.txt">

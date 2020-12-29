@@ -143,6 +143,60 @@ client/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
 .PHONY : client/fast
 
+authorization/authorization.o: authorization/authorization.cpp.o
+
+.PHONY : authorization/authorization.o
+
+# target to build an object file
+authorization/authorization.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/authorization/authorization.cpp.o
+.PHONY : authorization/authorization.cpp.o
+
+authorization/authorization.i: authorization/authorization.cpp.i
+
+.PHONY : authorization/authorization.i
+
+# target to preprocess a source file
+authorization/authorization.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/authorization/authorization.cpp.i
+.PHONY : authorization/authorization.cpp.i
+
+authorization/authorization.s: authorization/authorization.cpp.s
+
+.PHONY : authorization/authorization.s
+
+# target to generate assembly for a file
+authorization/authorization.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/authorization/authorization.cpp.s
+.PHONY : authorization/authorization.cpp.s
+
+file/open/open.o: file/open/open.cpp.o
+
+.PHONY : file/open/open.o
+
+# target to build an object file
+file/open/open.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/file/open/open.cpp.o
+.PHONY : file/open/open.cpp.o
+
+file/open/open.i: file/open/open.cpp.i
+
+.PHONY : file/open/open.i
+
+# target to preprocess a source file
+file/open/open.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/file/open/open.cpp.i
+.PHONY : file/open/open.cpp.i
+
+file/open/open.s: file/open/open.cpp.s
+
+.PHONY : file/open/open.s
+
+# target to generate assembly for a file
+file/open/open.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/file/open/open.cpp.s
+.PHONY : file/open/open.cpp.s
+
 fileOperations.o: fileOperations.cpp.o
 
 .PHONY : fileOperations.o
@@ -197,6 +251,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+send_message/send_message.o: send_message/send_message.cpp.o
+
+.PHONY : send_message/send_message.o
+
+# target to build an object file
+send_message/send_message.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/send_message/send_message.cpp.o
+.PHONY : send_message/send_message.cpp.o
+
+send_message/send_message.i: send_message/send_message.cpp.i
+
+.PHONY : send_message/send_message.i
+
+# target to preprocess a source file
+send_message/send_message.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/send_message/send_message.cpp.i
+.PHONY : send_message/send_message.cpp.i
+
+send_message/send_message.s: send_message/send_message.cpp.s
+
+.PHONY : send_message/send_message.s
+
+# target to generate assembly for a file
+send_message/send_message.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/send_message/send_message.cpp.s
+.PHONY : send_message/send_message.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -206,12 +287,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... client"
+	@echo "... authorization/authorization.o"
+	@echo "... authorization/authorization.i"
+	@echo "... authorization/authorization.s"
+	@echo "... file/open/open.o"
+	@echo "... file/open/open.i"
+	@echo "... file/open/open.s"
 	@echo "... fileOperations.o"
 	@echo "... fileOperations.i"
 	@echo "... fileOperations.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... send_message/send_message.o"
+	@echo "... send_message/send_message.i"
+	@echo "... send_message/send_message.s"
 .PHONY : help
 
 

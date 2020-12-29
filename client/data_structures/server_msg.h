@@ -15,7 +15,7 @@ struct server_close {
 
 struct server_read {
     unsigned int size;
-    unsigned int *data;
+    unsigned int data;
 };
 
 struct server_write {
@@ -43,7 +43,7 @@ struct server_closedir {
 };
 
 struct server_readdir {
-    char *name;
+    char name[128];
 };
 
 struct server_disconnect {

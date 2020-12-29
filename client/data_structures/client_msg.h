@@ -8,7 +8,7 @@ struct client_connection {
 };
 
 struct client_open {
-    char *path;
+    char path[128];
     unsigned int oflag;
     unsigned int mode;
 };
@@ -35,7 +35,7 @@ struct client_lseek {
 };
 
 struct client_unlink {
-    char *path;
+    char path[128];
 };
 
 
@@ -44,7 +44,7 @@ struct client_fstat {
 };
 
 struct client_opendir {
-    char *path;
+    char path[128];
 };
 
 struct client_closedir {

@@ -2,77 +2,77 @@
 #define TIN_NFS_CLIENT_MSG_H
 
 
-struct connection {
+struct client_connection {
     char login[128];
     char password[128];
 };
 
-struct open {
+struct client_open {
     char *path;
     unsigned int oflag;
     unsigned int mode;
 };
 
-struct close {
+struct client_close {
     unsigned int fd;
 };
 
-struct read {
+struct client_read {
     unsigned int fd;
     unsigned int read_size;
 };
 
-struct write {
+struct client_write {
     unsigned int fd;
     unsigned int write_size;
     void *data;
 };
 
-struct lseek {
+struct client_lseek {
     unsigned int fd;
     unsigned int offset;
     unsigned int whence;
 };
 
-struct unlink {
+struct client_unlink {
     char *path;
 };
 
 
-struct fstat {
+struct client_fstat {
     unsigned int fd;
 };
 
-struct opendir {
+struct client_opendir {
     char *path;
 };
 
-struct closedir {
+struct client_closedir {
     unsigned int dir_fd;
 };
 
-struct readdir {
+struct client_readdir {
     unsigned int dir_fd;
 };
 
-struct disconnect {
+struct client_disconnect {
 };
 
 struct client_msg {
     unsigned short request_type;
     union {
-        struct connection connection;
-        struct open open;
-        struct close close;
-        struct read read;
-        struct write write;
-        struct lseek lseek;
-        struct unlink unlink;
-        struct fstat fstat;
-        struct opendir opendir;
-        struct closedir closedir;
-        struct readdir readdir;
-        struct disconnect disconnect1;
+        struct client_connection connection;
+        struct client_open open;
+        struct client_close close;
+        struct client_read read;
+        struct client_write write;
+        struct client_lseek lseek;
+        struct client_unlink unlink;
+        struct client_fstat fstat;
+        struct client_opendir opendir;
+        struct client_closedir closedir;
+        struct client_readdir readdir;
+        struct client_disconnect disconnect1;
     } arguments;
 };
 #endif //TIN_NFS_CLIENT_MSG_H

@@ -1,69 +1,71 @@
 #ifndef TIN_NFS_SERVER_MSG_H
 #define TIN_NFS_SERVER_MSG_H
+
+
+struct server_connection {
+    unsigned int new_server_port;
+};
+
+struct server_open {
+    unsigned int fd;
+};
+
+struct server_close {
+} ;
+
+struct server_read {
+    unsigned int size;
+    unsigned int *data;
+};
+
+struct server_write {
+    unsigned int size;
+};
+
+struct server_lseek {
+    unsigned int offset;
+};
+
+struct server_unlink {
+};
+
+
+struct server_fstat {
+    //todo zdefiniuj struskturę stat
+};
+
+struct server_opendir {
+    unsigned int dir_fd;
+};
+
+struct server_closedir {
+
+};
+
+struct server_readdir {
+    char *name;
+};
+
+struct server_disconnect {
+} ;
+
 struct server_msg {
     unsigned short response_type;
     unsigned short error;
     union {
-        connect connection;
-        open open;
-        close close;
-        read read;
-        write write;
-        lseek lseek;
-        unlink unlink;
-        fstat fstat;
-        opendir opendir;
-        closedir closedir;
-        readdir readdir;
-        disconnect disconnect1;
-    } response
-}
-
-typedef struct connect {
-    unsigned int new_server_port;
-} connect;
-
-typedef struct open {
-    unsigned int fd;
-} open;
-
-typedef struct close {
-} close;
-
-typedef struct read {
-    unsigned int size;
-    unsigned int *data;
-} read;
-
-typedef struct write {
-    unsigned int size;
-} write;
-
-typedef struct lseek {
-    unsigned int offset;
-} lseek;
-
-typedef struct unlink {
-} unlink;
-
-
-typedef struct fstat {
-    //todo zdefiniuj struskturę stat
-} fstat;
-
-typedef struct opendir {
-    unsigned int dir_fd
-} opendir;
-
-typedef struct closedir {
-
-} closedir;
-
-typedef struct readdir {
-    char *name
-} readdir;
-
-typedef struct disconnect {
-} disconnect;
+        struct server_connection connection;
+        struct server_open open;
+        struct server_close close;
+        struct server_read read;
+        struct server_write write;
+        struct server_lseek lseek;
+        struct server_unlink unlink;
+        struct server_fstat fstat;
+        struct server_opendir opendir;
+        struct server_closedir closedir;
+        struct server_readdir readdir;
+        struct server_disconnect disconnect1;
+    } response;
+};
 
 #endif //TIN_NFS_SERVER_MSG_H

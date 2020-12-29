@@ -1,19 +1,24 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include <iostream>
+#include <cstring>
 #include "data_structures/client_msg.h"
 #include "data_structures/codes.h"
+#include "data_structures/server_msg.h"
 
 void run_server(int);
 
-void getClientMsgFromSocket(int new_socket);
-void handleConnectionRequest(client_msg * clientMsg);
+void getClientMsgFromSocketAndSendResponse(int new_socket);
+
+void handleConnectionRequest(client_msg *clientAuthMsg, char **response);
+
+int sendMessage(char *serverIp, uint16_t port, struct server_msg *input);
 
 int main() {
 
     run_server(8080);
-
 
 }
 
@@ -22,7 +27,6 @@ void run_server(int portNumber) {
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
-
 
     // Creating socket file descriptor
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -41,7 +45,6 @@ void run_server(int portNumber) {
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(portNumber);
 
-
     if (bind(server_fd, (struct sockaddr *) &address,
              sizeof(address)) < 0) {
         perror("bind failed");
@@ -53,7 +56,7 @@ void run_server(int portNumber) {
         exit(EXIT_FAILURE);
     }
 
-
+    //sockets' handling
     while (true) {
         new_socket = accept(server_fd, (struct sockaddr *) &address,
                             (socklen_t *) &addrlen);
@@ -61,32 +64,55 @@ void run_server(int portNumber) {
             perror("accept");
             exit(EXIT_FAILURE);
         }
-        getClientMsgFromSocket(new_socket);
+        getClientMsgFromSocketAndSendResponse(new_socket);
     }
 }
 
-void getClientMsgFromSocket(int new_socket) {
+void getClientMsgFromSocketAndSendResponse(int new_socket) {
     //todo ogarnąc jaki rozmiar powinien miec ten bufor
     char *buf = new char[1024];
+    char *response;
     //todo ogrnąć ile powinniśmy czytać z bufora (parametr n)
     int bytes = recv(new_socket, buf, 1000, 0);
     if (bytes <= 0) {
-        perror("receive");
+        perror("error during receiving data");
         exit(EXIT_FAILURE);
     }
     auto clientMsg = (client_msg *) buf;
     std::cout << "received bytes : " << bytes << std::endl;
     std::cout << "request type : " << clientMsg->request_type << std::endl;
-    if (clientMsg->request_type == AUTHORIZATION_REQUEST)
-    handleConnectionRequest(clientMsg);
+    //todo tutaj trzeba bedzie zrobić switcha na rozne typy requestow
+    switch (clientMsg->request_type) {
+        case CONNECTION_REQUEST:
+            handleConnectionRequest(clientMsg, &response);
+            break;
+        default:
+            perror("unknown request type");
+            exit(EXIT_FAILURE);
 
+    }
 
+    send(new_socket, response, sizeof(server_msg), 0);
+    std::cout << "response is sent" << std::endl;
 }
 
-void handleConnectionRequest(client_msg * clientAuthMsg){
-
-        std::cout<<"login : "<<clientAuthMsg->arguments.connection.login<<"\n";
-        std::cout<<"password : "<<clientAuthMsg->arguments.connection.password<<"\n";
-        std::cout.flush();
-        //todo tutaj mamy juz dane do autoryzacji , wiec trzeba dodac dalsze działania dotyczace autoryzacji
+void handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
+    std::cout << "login : " << clientAuthMsg->arguments.connection.login << "\n";
+    std::cout << "password : " << clientAuthMsg->arguments.connection.password << "\n";
+    //todo tutaj mamy juz dane do autoryzacji , wiec trzeba dodac dalsze działania dotyczace autoryzacji
+    // na razie sprawdzanie dla przykladowych danych login:michal haslo:haslo
+    auto *response_auth = (server_msg *) malloc(sizeof(server_msg));
+    if (strcmp(clientAuthMsg->arguments.connection.password, "haslo") == 0) {
+        response_auth->response_type = AUTHORIZATION_RESPONSE;
+        response_auth->response = {
+                .connection = {
+                        8081,
+                }
+        };
+        *response = (char *) response_auth;
+        std::cout << "authorized properly" << std::endl;
+    } else {
+        std::cout << "authorization failed" << std::endl;
+    }
 }
+

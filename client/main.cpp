@@ -7,33 +7,35 @@
 #include <iostream>
 #include <data_structures/codes.h>
 #include <data_structures/client_msg.h>
+#include <data_structures/server_msg.h>
+#include <unistd.h>
 
-int sendMessage(char * serverIp,uint16_t port,  client_msg *input);
+int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input);
 
 int main() {
     //send auth request
-     client_msg input{
-        .request_type = AUTHORIZATION_REQUEST,
-        .arguments = {
-                .connection = {
-                        "michal",
-                        "haslo",
-                }
-        }
+    client_msg input{
+            .request_type = AUTHORIZATION_REQUEST,
+            .arguments = {
+                    .connection = {
+                            "michal",
+                            "haslo",
+                    }
+            }
     };
-    sendMessage((char*)"127.0.0.1",8080,&input);
+    sendMessageAndGetResponse((char *) "127.0.0.1", 8080, &input);
+
 
     return 0;
 
 }
 
-int sendMessage(char * serverIp,uint16_t port, struct client_msg *input) {
+int sendMessageAndGetResponse(char *serverIp, uint16_t port, struct client_msg *input) {
     int sockfd;
     struct sockaddr_in serv_addr;
 
-    if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-    {
-        std::cout<<"error during socket creating";
+    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+        std::cout << "error during socket creating";
         return ERROR;
     }
 
@@ -42,17 +44,26 @@ int sendMessage(char * serverIp,uint16_t port, struct client_msg *input) {
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(port);
 
-    if(inet_pton(AF_INET, serverIp, &serv_addr.sin_addr) <= 0)
-    {
-        std::cout<<"inet_pton error";
+    if (inet_pton(AF_INET, serverIp, &serv_addr.sin_addr) <= 0) {
+        std::cout << "inet_pton error";
         return ERROR;
     }
 
-    if( connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
-    {
-        std::cout<<"error during connection setting";
+    if (connect(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
+        std::cout << "error during connection setting";
         return ERROR;
     }
 
-    send(sockfd, input, sizeof (client_msg) , 0);
+    send(sockfd, input, sizeof(client_msg), 0);
+    char response[sizeof(server_msg)];
+    server_msg *serverResponseMessage;
+
+    read(sockfd, response, sizeof(server_msg));
+    std::cout << "response is received" << std::endl;
+
+
+    serverResponseMessage = (server_msg *) response;
+    if (serverResponseMessage->response_type == AUTHORIZATION_RESPONSE) {
+        std::cout << "new port: " << serverResponseMessage->response.connection.new_server_port << std::endl;
+    }
 }

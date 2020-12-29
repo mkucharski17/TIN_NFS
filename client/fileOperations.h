@@ -19,5 +19,5 @@ int mynfs_close();
 int mynfs_unlink(char *host, char *path);
 
 ///pobiera atrybuty otwartego pliku - analogicznie do funkcji systemowej fstat();
-mynfs_fstat(int mynfs_fd);
+int mynfs_fstat(int mynfs_fd);
 #endif //CLIENT_OPERATIONS_H

@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/michal/Desktop/tin/TIN_NFS/client/main.cpp
+sys/socket.h
+-
+netinet/in.h
+-
+stdio.h
+-
+string.h
+-
+arpa/inet.h
+-
+iostream
+-
+data_structures/codes.h
+-
+data_structures/client_msg.h
+-
+

@@ -6,29 +6,25 @@
 
 #IncludeRegexTransform: 
 
+../authorization/authorization.h
+data_structures/client_msg.h
+-
+cstring
+-
+data_structures/codes.h
+-
+
 ../data_structures/client_msg.h
 
 ../data_structures/codes.h
 
-../data_structures/server_msg.h
+../file/open/open.h
 
 /home/michal/Desktop/tin/TIN_NFS/client/main.cpp
-sys/socket.h
--
-netinet/in.h
--
-string.h
--
-arpa/inet.h
--
-iostream
--
 data_structures/codes.h
 -
-data_structures/client_msg.h
+file/open/open.h
 -
-data_structures/server_msg.h
--
-unistd.h
+authorization/authorization.h
 -
 

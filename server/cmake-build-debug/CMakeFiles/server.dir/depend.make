@@ -3,5 +3,6 @@
 
 CMakeFiles/server.dir/main.cpp.o: ../data_structures/client_msg.h
 CMakeFiles/server.dir/main.cpp.o: ../data_structures/codes.h
+CMakeFiles/server.dir/main.cpp.o: ../data_structures/server_msg.h
 CMakeFiles/server.dir/main.cpp.o: ../main.cpp
 

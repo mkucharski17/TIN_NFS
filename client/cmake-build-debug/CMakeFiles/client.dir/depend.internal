@@ -7,4 +7,5 @@ CMakeFiles/client.dir/fileOperations.cpp.o
 CMakeFiles/client.dir/main.cpp.o
  ../data_structures/client_msg.h
  ../data_structures/codes.h
+ ../data_structures/server_msg.h
  /home/michal/Desktop/tin/TIN_NFS/client/main.cpp

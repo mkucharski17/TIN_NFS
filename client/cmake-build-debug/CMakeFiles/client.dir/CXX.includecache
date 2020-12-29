@@ -10,6 +10,8 @@
 
 ../data_structures/codes.h
 
+../data_structures/server_msg.h
+
 /home/michal/Desktop/tin/TIN_NFS/client/main.cpp
 sys/socket.h
 -
@@ -26,5 +28,9 @@ iostream
 data_structures/codes.h
 -
 data_structures/client_msg.h
+-
+data_structures/server_msg.h
+-
+unistd.h
 -
 

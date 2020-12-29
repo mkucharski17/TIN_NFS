@@ -6,5 +6,6 @@ CMakeFiles/client.dir/fileOperations.cpp.o: ../fileOperations.h
 
 CMakeFiles/client.dir/main.cpp.o: ../data_structures/client_msg.h
 CMakeFiles/client.dir/main.cpp.o: ../data_structures/codes.h
+CMakeFiles/client.dir/main.cpp.o: ../data_structures/server_msg.h
 CMakeFiles/client.dir/main.cpp.o: ../main.cpp
 

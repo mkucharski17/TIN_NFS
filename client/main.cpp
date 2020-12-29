@@ -15,7 +15,7 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input);
 int main() {
     //send auth request
     client_msg input{
-            .request_type = AUTHORIZATION_REQUEST,
+            .request_type = CONNECTION_REQUEST,
             .arguments = {
                     .connection = {
                             "michal",
@@ -63,7 +63,11 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, struct client_msg *
 
 
     serverResponseMessage = (server_msg *) response;
-    if (serverResponseMessage->response_type == AUTHORIZATION_RESPONSE) {
+    switch (serverResponseMessage->response_type ) {
+        case CONNECTION_RESPONSE
+
+    }
+    if (serverResponseMessage->response_type == CONNECTION_RESPONSE) {
         std::cout << "new port: " << serverResponseMessage->response.connection.new_server_port << std::endl;
     }
 }

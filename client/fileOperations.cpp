@@ -1,9 +1,6 @@
 
 #include "fileOperations.h"
 
-int mynfs_open(char *host, char *path, int oflag, int mode) {
-    return 0;
-}
 
 int mynfs_read() {
     return 0;

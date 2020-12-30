@@ -4,8 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/michal/Desktop/tin/TIN_NFS/client/authorization/authorization.cpp" "/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/authorization/authorization.cpp.o"
+  "/home/michal/Desktop/tin/TIN_NFS/client/file/open/open.cpp" "/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/file/open/open.cpp.o"
   "/home/michal/Desktop/tin/TIN_NFS/client/fileOperations.cpp" "/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/fileOperations.cpp.o"
   "/home/michal/Desktop/tin/TIN_NFS/client/main.cpp" "/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/main.cpp.o"
+  "/home/michal/Desktop/tin/TIN_NFS/client/send_message/send_message.cpp" "/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/send_message/send_message.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

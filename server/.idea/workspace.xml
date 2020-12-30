@@ -12,12 +12,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33eae38f-15f2-4f63-8b75-bfb4977d2fec" name="Default Changelist" comment="connection response zmiana nazwy">
-      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/CXX.includecache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/authorization/authorization.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/authorization/authorization.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/file/open/open.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/file/open/open.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/send_message/send_message.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/send_message/send_message.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../client/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/client.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/client" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/client" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/client.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/client.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/data_structures/client_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../client/data_structures/client_msg.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/data_structures/codes.h" beforeDir="false" afterPath="$PROJECT_DIR$/../client/data_structures/codes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/data_structures/server_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../client/data_structures/server_msg.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/fileOperations.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../client/fileOperations.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/fileOperations.h" beforeDir="false" afterPath="$PROJECT_DIR$/../client/fileOperations.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../client/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/server" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/server" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures/client_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures/client_msg.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures/codes.h" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures/codes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures/server_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures/server_msg.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,11 +80,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="server" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="server" TARGET_NAME="server" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="server" RUN_TARGET_NAME="server">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -77,7 +97,8 @@
       <workItem from="1609153443064" duration="1489000" />
       <workItem from="1609172353642" duration="6592000" />
       <workItem from="1609238410122" duration="3448000" />
-      <workItem from="1609245272365" duration="3101000" />
+      <workItem from="1609245272365" duration="4486000" />
+      <workItem from="1609268494361" duration="5633000" />
     </task>
     <task id="LOCAL-00001" summary="przyjmowanie requestu autoryzacji zrobione">
       <created>1609179014989</created>
@@ -100,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609248261680</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="connection response zmiana nazwy">
+      <created>1609248550759</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1609248550759</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,8 +158,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>103</line>
+          <line>107</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>89</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

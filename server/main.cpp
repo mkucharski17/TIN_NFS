@@ -14,7 +14,7 @@ void getClientMsgFromSocketAndSendResponse(int new_socket);
 
 void handleConnectionRequest(client_msg *clientAuthMsg, char **response);
 
-int sendMessage(char *serverIp, uint16_t port, struct server_msg *input);
+void handleOpenFileRequest(client_msg *clientAuthMsg, char **response);
 
 int main() {
 
@@ -86,6 +86,9 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
         case CONNECTION_REQUEST:
             handleConnectionRequest(clientMsg, &response);
             break;
+        case OPEN_FILE_REQUEST:
+            handleOpenFileRequest(clientMsg, &response);
+            break;
         default:
             perror("unknown request type");
             exit(EXIT_FAILURE);
@@ -101,6 +104,7 @@ void handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
     //todo tutaj mamy juz dane do autoryzacji , wiec trzeba dodac dalsze działania dotyczace autoryzacji
     // na razie sprawdzanie dla przykladowych danych login:michal haslo:haslo
     auto *response_auth = (server_msg *) malloc(sizeof(server_msg));
+
     if (strcmp(clientAuthMsg->arguments.connection.password, "haslo") == 0) {
         response_auth->response_type = CONNECTION_RESPONSE;
         response_auth->response = {
@@ -113,5 +117,24 @@ void handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
     } else {
         std::cout << "authorization failed" << std::endl;
     }
+}
+
+void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
+    std::cout << "path : " << clientAuthMsg->arguments.open.path << "\n";
+    std::cout << "oflag : " << clientAuthMsg->arguments.open.oflag << "\n";
+    std::cout << "mode : " << clientAuthMsg->arguments.open.mode << "\n";
+
+    auto *openFileResponse = (server_msg *) malloc(sizeof(server_msg));
+
+
+    openFileResponse->response_type = OPEN_FILE_RESPONSE;
+    openFileResponse->response = {
+            .open = {
+                    111111111,
+            }
+    };
+    *response = (char *) openFileResponse;
+    std::cout << "file is open" << std::endl;
+
 }
 

@@ -2,8 +2,7 @@
 #include "fileOperations.h"
 
 
-int mynfs_read(int fd, void *buf, int count)
-{
+int mynfs_read(int fd, void *buf, int count) {
     client_msg clientMsg;
     server_msg *serverMsg;
 
@@ -21,8 +20,24 @@ int mynfs_read(int fd, void *buf, int count)
     return len;
 }
 
-int mynfs_write(int fd, const void *buf, int count)
-{
+char* mynfs_readdir(int dirfd) {
+    client_msg clientMsg;
+    server_msg *serverMsg;
+
+    clientMsg.request_type = READ_DIR_REQUEST;
+    clientMsg.arguments.read.fd = htonl(dirfd);
+
+    sendMessageAndGetResponse(host, 8080, &clientMsg, &serverMsg);
+
+    int len = ntohl(serverMsg->response.read.size);
+    std::cout << "RECEIVED mynfs_readdir RESPONSE size: " << len << std::endl;
+
+    memcpy(buf, serverMsg->response.read.data, len);
+
+    return len;
+}
+
+int mynfs_write(int fd, const void *buf, int count) {
     client_msg clientMsg;
     server_msg *serverMsg;
 
@@ -58,8 +73,7 @@ int mynfs_lseek(int fd, int offset, int whence) {
     return len;
 }
 
-int mynfs_close(int fd)
-{
+int mynfs_close(int fd) {
     client_msg clientMsg;
     server_msg *serverMsg;
 
@@ -72,13 +86,24 @@ int mynfs_close(int fd)
     std::cout << "RECEIVED mynfs_close RESPONSE status: " << status << std::endl;
 
     return status;
-
-
-
 }
 
-int mynfs_unlink(char *host, char *path)
-{
+int mynfs_closedir(int dirfd) {
+    client_msg clientMsg;
+    server_msg *serverMsg;
+
+    clientMsg.request_type =  CLOSE_DIR_REQUEST;
+    clientMsg.arguments.close.fd = htonl(dirfd);
+
+    sendMessageAndGetResponse(host, 8080, &clientMsg, &serverMsg);
+
+    int status = ntohl(serverMsg->response.close.status);
+    std::cout << "RECEIVED mynfs_closedir RESPONSE status: " << status << std::endl;
+
+    return status;
+}
+
+int mynfs_unlink(char *host, char *path) {
     client_msg clientMsg;
     server_msg *serverMsg;
 
@@ -91,13 +116,9 @@ int mynfs_unlink(char *host, char *path)
     std::cout << "RECEIVED mynfs_unlink RESPONSE status: " << status << std::endl;
 
     return status;
-
-
-
 }
 
-int mynfs_fstat(int mynfs_fd,struct stat *statbuf)
-{
+int mynfs_fstat(int mynfs_fd,struct stat *statbuf) {
     client_msg clientMsg;
     server_msg *serverMsg;
 

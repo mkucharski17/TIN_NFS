@@ -19,13 +19,17 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response);
 
 void handleOpenDirRequest(client_msg *clientAuthMsg, char **response);
 
-void handleReadFileRequest(client_msg *clientMsg, char **response) ;
+void handleReadFileRequest(client_msg *clientMsg, char **response);
+
+void handleReadDirRequest(client_msg *clientMsg, char **response);
 
 void handleWriteFileRequest(client_msg *clientMsg, char **response);
 
 void handleLSeekFileRequest(client_msg *clientMsg, char **response);
 
 void handleCloseFileRequest(client_msg *clientMsg, char **response);
+
+void handleCloseDirRequest(client_msg *clientMsg, char **response);
 
 void handleUnlinkFileRequest(client_msg *clientMsg, char **response);
 
@@ -105,8 +109,14 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
         case OPEN_FILE_REQUEST:
             handleOpenFileRequest(clientMsg, &response);
             break;
+        case OPEN_DIR_REQUEST:
+            handleOpenDirRequest(clientMsg, &response);
+            break;
         case READ_FILE_REQUEST:
             handleReadFileRequest(clientMsg,&response);
+            break;
+        case READ_DIR_REQUEST:
+            handleReadDirRequest(clientMsg,&response);
             break;
         case WRITE_FILE_REQUEST:
             handleWriteFileRequest(clientMsg,&response);
@@ -116,6 +126,9 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
             break;
         case CLOSE_FILE_REQUEST:
             handleCloseFileRequest(clientMsg,&response);
+            break;
+        case CLOSE_DIR_REQUEST:
+            handleCloseDirRequest(clientMsg,&response);
             break;
         case UNLINK_FILE_REQUEST:
             handleUnlinkFileRequest(clientMsg,&response);
@@ -176,13 +189,13 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
 }
 
 void handleOpenDirRequest(client_msg *clientAuthMsg, char **response) {
-    std::cout << "path : " << clientAuthMsg->arguments.open.path << "\n";
-    auto dird = opendir(clientAuthMsg->arguments.open.path);
+    std::cout << "path : " << clientAuthMsg->arguments.opendir.path << "\n";
+    auto dird = opendir(clientAuthMsg->arguments.opendir.path);
     auto *openDirResponse = (server_msg *) malloc(sizeof(server_msg));
 
     openDirResponse->response_type = OPEN_DIR_RESPONSE;
     openDirResponse->response = {
-            .open = {
+            .opendir = {
                     htonl(dirfd(dird))
             }
     };
@@ -217,6 +230,23 @@ void handleReadFileRequest(client_msg *clientMsg, char **response) {
     std::cout<<"read: "<<serverMsg->response.read.data<< std::endl;
     free(buffer);
     *response = (char*)serverMsg;
+}
+
+void handleReadDirRequest(client_msg *clientMsg, char **response) {
+    std::cout << "read dir request" << std::endl;
+    int dir_fd = ntohl(clientMsg->arguments.readdir.dir_fd);
+    auto dir = fdopendir(dir_fd);
+    struct dirent *ent;
+    std::string dirFileNames;
+    while((ent = readdir(dir)) != NULL) {
+        dirFileNames += ent->d_name + "\n";
+    }
+    strncpy(serverMsg->response.readdir.name, dirFileNames.c_str(), dirFileNames.length());
+    serverMsg->error = htonl(errno);
+    serverMsg->response_type = READ_DIR_RESPONSE;
+
+    std::cout << "read: " << serverMsg->response.readdir.name << std::endl;
+    *response = (char*) serverMsg;
 }
 
 void handleWriteFileRequest(client_msg *clientMsg, char **response) {
@@ -273,6 +303,22 @@ void handleCloseFileRequest(client_msg *clientMsg, char **response)
 
     std::cout<<"close status:"<<closeStatus <<  std::endl;
     *response = (char*)serverMsg;
+}
+
+void handleCloseDirRequest(client_msg *clientMsg, char **response) {
+    std::cout << "close dir request" << std::endl;
+    int dir_fd = ntohl(clientMsg->arguments.closedir.dir_fd);
+
+    int closeStatus = closedir(dir_fd);
+
+    auto *serverMsg = (server_msg*) malloc(sizeof(server_msg));
+
+    serverMsg->response.closedir.status = closeStatus;
+    serverMsg->error = htonl(errno);
+    serverMsg->response_type = CLOSE_DIR_RESPONSE;
+
+    std::cout << "close status: " << closeStatus << std::endl;
+    *response = (char*) serverMsg;
 }
 
 void handleUnlinkFileRequest(client_msg *clientMsg, char **response)

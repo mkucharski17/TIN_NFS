@@ -159,12 +159,7 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
 
 
     openFileResponse->response_type = OPEN_FILE_RESPONSE;
-    openFileResponse->response = {
-            .open = {
-                    htonl(fd);
-            }
-
-    };
+    openFileResponse->response.open.fd = htonl(fd);
     openFileResponse->error = htonl(errno);
 
     *response = (char *) openFileResponse;

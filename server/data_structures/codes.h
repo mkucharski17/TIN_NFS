@@ -31,6 +31,12 @@
 #define OPEN_DIR_REQUEST 17
 #define OPEN_DIR_RESPONSE 18
 
+#define READ_DIR_REQUEST 19
+#define READ_DIR_RESPONSE 20
+
+#define CLOSE_DIR_REQUEST 21
+#define CLOSE_DIR_RESPONSE 22
+
 /// file mode
 #define O_RDONLY 0
 #define O_WRONLY 1

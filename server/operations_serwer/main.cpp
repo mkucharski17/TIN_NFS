@@ -10,6 +10,7 @@
 #include <iostream>
 #include <cstring>
 #include <limits.h>
+#include <dirent.h>
 #include "../data_structures/client_msg.h"
 #include "../data_structures/codes.h"
 #include "../data_structures/server_msg.h"
@@ -238,8 +239,9 @@ void handleReadDirRequest(client_msg *clientMsg, char **response) {
     struct dirent *ent;
     std::string dirFileNames;
     while((ent = readdir(dir)) != NULL) {
-        dirFileNames += ent->d_name + "\n";
+        dirFileNames.append(ent->d_name).append("\n");
     }
+    server_msg *serverMsg = (server_msg*) malloc(sizeof(server_msg ) + dirFileNames.length());
     strncpy(serverMsg->response.readdir.name, dirFileNames.c_str(), dirFileNames.length());
     serverMsg->error = htonl(errno);
     serverMsg->response_type = READ_DIR_RESPONSE;
@@ -307,8 +309,9 @@ void handleCloseFileRequest(client_msg *clientMsg, char **response)
 void handleCloseDirRequest(client_msg *clientMsg, char **response) {
     std::cout << "close dir request" << std::endl;
     int dir_fd = ntohl(clientMsg->arguments.closedir.dir_fd);
+    auto dir = Storage::instance().get(dir_fd);
 
-    int closeStatus = closedir(dir_fd);
+    int closeStatus = closedir(dir);
 
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg));
 

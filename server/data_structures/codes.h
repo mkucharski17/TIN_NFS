@@ -28,6 +28,9 @@
 #define FSTAT_FILE_REQUEST 15
 #define FSTAT_FILE_RESPONSE 16
 
+#define OPEN_DIR_REQUEST 17
+#define OPEN_DIR_RESPONSE 18
+
 /// file mode
 #define O_RDONLY 0
 #define O_WRONLY 1

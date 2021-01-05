@@ -4,6 +4,7 @@
 #include <arpa/inet.h>
 #include <iostream>
 #include <cstring>
+#include <dirent.h>
 #include "data_structures/client_msg.h"
 #include "data_structures/codes.h"
 #include "data_structures/server_msg.h"
@@ -15,6 +16,8 @@ void getClientMsgFromSocketAndSendResponse(int new_socket);
 void handleConnectionRequest(client_msg *clientAuthMsg, char **response);
 
 void handleOpenFileRequest(client_msg *clientAuthMsg, char **response);
+
+void handleOpenDirRequest(client_msg *clientAuthMsg, char **response);
 
 void handleReadFileRequest(client_msg *clientMsg, char **response) ;
 
@@ -170,6 +173,23 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
     *response = (char *) openFileResponse;
     std::cout << "file is open" << std::endl;
 
+}
+
+void handleOpenDirRequest(client_msg *clientAuthMsg, char **response) {
+    std::cout << "path : " << clientAuthMsg->arguments.open.path << "\n";
+    auto dird = opendir(clientAuthMsg->arguments.open.path);
+    auto *openDirResponse = (server_msg *) malloc(sizeof(server_msg));
+
+    openDirResponse->response_type = OPEN_DIR_RESPONSE;
+    openDirResponse->response = {
+            .open = {
+                    htonl(dirfd(dird))
+            }
+    };
+    openDirResponse->error = htonl(errno);
+
+    *response = (char *) openDirResponse;
+    std::cout << "dir is open" << std::endl;
 }
 
 void handleReadFileRequest(client_msg *clientMsg, char **response) {

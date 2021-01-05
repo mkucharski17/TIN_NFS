@@ -21,3 +21,15 @@ unsigned int mynfs_open (char *host, char *path, int oflag, int mode) {
 
     return openResponse->response.open.fd;
 }
+
+unsigned int mynfs_opendir(char *host, char *path) {
+    client_msg openRequest;
+    server_msg *openResponse;
+    openRequest.request_type = OPEN_DIR_REQUEST;
+    strcpy((char*)openRequest.arguments.open.path, path);
+    // todo autoryzacja?
+
+    sendMessageAndGetResponse(host, 8080, &openRequest, &openResponse);
+
+    return openResponse->response.open.fd;
+}

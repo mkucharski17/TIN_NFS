@@ -44,6 +44,26 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input, 
         case OPEN_FILE_RESPONSE:
             std::cout << "file descriptor: " << (*serverResponse)->response.open.fd << std::endl;
             break;
+
+        case READ_FILE_RESPONSE:
+            std::cout << "read:  " << (*serverResponse)->respone.read.data << std::endl;
+            break;
+        case WRITE_FILE_RESPONSE:
+            std::cout << "write:  " << (*serverResponse)->respone.write.size << std::endl;
+            break;
+        case LSEEK_FILE_RESPONSE:
+            std::cout << "lseek:  " << (*serverResponse)->respone.lseek.offset << std::endl;
+            break;
+        case CLOSE_FILE_RESPONSE:
+            std::cout << "close:  " << (*serverResponse)->respone.close.status << std::endl;
+            break;
+        case UNLINK_FILE_RESPONSE:
+            std::cout << "unlink:  " << (*serverResponse)->respone.unlink.status << std::endl;
+            break;
+        case FSTAT_FILE_RESPONSE:
+            std::cout << "fstat:  " << (*serverResponse)->respone.fstat.status << std::endl;
+            break;
+
         default:
             std::cout << "unknown response type" << std::endl;
             return ERROR;

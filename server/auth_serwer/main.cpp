@@ -8,39 +8,30 @@
 #include <errno.h>
 #include <arpa/inet.h>
 #include <iostream>
+#include <fstream>
 #include <cstring>
+#include <string>
 #include "../data_structures/client_msg.h"
 #include "../data_structures/codes.h"
 #include "../data_structures/server_msg.h"
 
-void run_server(int);
+void run_authorization_server(int);
 
-void getClientMsgFromSocketAndSendResponse(int new_socket);
+void getClientAuthorizationMsg(int new_secket);
 
-void handleConnectionRequest(client_msg *clientAuthMsg, char **response);
+int handleConnectionRequest(client_msg *clientAuthMsg, char **response);
 
-void handleOpenFileRequest(client_msg *clientAuthMsg, char **response);
+bool areAuthorizationDataValid(client_msg *clientAuthMsg);
 
-void handleReadFileRequest(client_msg *clientMsg, char **response) ;
+void getNextLoginAndPassword(char* output_login, char* output_password, std::fstream* data_file);
 
-void handleWriteFileRequest(client_msg *clientMsg, char **response);
-
-void handleLSeekFileRequest(client_msg *clientMsg, char **response);
-
-void handleCloseFileRequest(client_msg *clientMsg, char **response);
-
-void handleUnlinkFileRequest(client_msg *clientMsg, char **response);
-
-void handleFstatFileRequest(client_msg *clientMsg, char **response);
-
+int findNewSerwerPort();
 
 int main() {
-
-    run_server(8080);
-
+    run_authorization_server(8080);
 }
 
-void run_server(int portNumber) {
+void run_authorization_server(int portNumber) {
     int server_fd, new_socket;
     struct sockaddr_in address;
     int opt = 1;
@@ -82,11 +73,11 @@ void run_server(int portNumber) {
             perror("accept");
             exit(EXIT_FAILURE);
         }
-        getClientMsgFromSocketAndSendResponse(new_socket);
+        getClientAuthorizationMsg(new_socket);
     }
 }
 
-void getClientMsgFromSocketAndSendResponse(int new_socket) {
+void getClientAuthorizationMsg(int new_socket) {
     //todo ogarnąc jaki rozmiar powinien miec ten bufor
     char *buf = new char[1024];
     char *response;
@@ -100,197 +91,81 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
     std::cout << "received bytes : " << bytes << std::endl;
     std::cout << "request type : " << clientMsg->request_type << std::endl;
     //todo tutaj trzeba bedzie zrobić switcha na rozne typy requestow
-    switch (clientMsg->request_type) {
-        case CONNECTION_REQUEST:
-            handleConnectionRequest(clientMsg, &response);
-            break;
-        case OPEN_FILE_REQUEST:
-            handleOpenFileRequest(clientMsg, &response);
-            break;
-        case READ_FILE_REQUEST:
-            handleReadFileRequest(clientMsg,&response);
-            break;
-        case WRITE_FILE_REQUEST:
-            handleWriteFileRequest(clientMsg,&response);
-            break;
-        case LSEEK_FILE_REQUEST:
-            handleLSeekFileRequest(clientMsg,&response);
-            break;
-        case CLOSE_FILE_REQUEST:
-            handleCloseFileRequest(clientMsg,&response);
-            break;
-        case UNLINK_FILE_REQUEST:
-            handleUnlinkFileRequest(clientMsg,&response);
-            break;
-        case FSTAT_FILE_REQUEST:
-            handleFstatFileRequest(clientMsg,&response);
-            break;
-        default:
-            perror("unknown request type");
-            exit(EXIT_FAILURE);
+
+    if(clientMsg->request_type != CONNECTION_REQUEST) {
+      perror("Wrong request type for authorization serwer!");
+      exit(EXIT_FAILURE);
     }
 
-    send(new_socket, response, sizeof(server_msg), 0);
-    std::cout << "response is sent" << std::endl;
+    int new_server_port=0;
+    if((new_server_port = handleConnectionRequest(clientMsg, &response)) != -1) {
+      std::string command = "gnome-terminal -e 'sh -c \"./operationsSerwer ";
+      command += std::to_string(new_server_port);
+      command += "\"'";
+      std::cout<<command<<"\n";
+      system(command.c_str());
+
+      send(new_socket, response, sizeof(server_msg), 0);
+      std::cout << "response is sent" << std::endl;
+    }
 }
 
-void handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
+
+
+int handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
     std::cout << "login : " << clientAuthMsg->arguments.connection.login << "\n";
     std::cout << "password : " << clientAuthMsg->arguments.connection.password << "\n";
     //todo tutaj mamy juz dane do autoryzacji , wiec trzeba dodac dalsze działania dotyczace autoryzacji
     // na razie sprawdzanie dla przykladowych danych login:michal haslo:haslo
     auto *response_auth = (server_msg *) malloc(sizeof(server_msg));
 
-    if (strcmp(clientAuthMsg->arguments.connection.password, "haslo") == 0) {
+    int new_server_port;
+
+    if (areAuthorizationDataValid(clientAuthMsg)) {
+        new_server_port = findNewSerwerPort();
         response_auth->response_type = CONNECTION_RESPONSE;
         response_auth->response = {
                 .connection = {
-                        .new_server_port = 8081,
+                        .new_server_port = new_server_port,
                 }
         };
         *response = (char *) response_auth;
         std::cout << "authorized properly" << std::endl;
+        return new_server_port;
     } else {
         std::cout << "authorization failed" << std::endl;
+        return -1;
     }
 }
 
-void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
-    std::cout << "path : " << clientAuthMsg->arguments.open.path << "\n";
-    std::cout << "oflag : " << clientAuthMsg->arguments.open.oflag << "\n";
-    std::cout << "mode : " << clientAuthMsg->arguments.open.mode << "\n";
-    int32_t fd;
-    fd = open((char *) clientAuthMsg->arguments.open.path, (int)clientAuthMsg->arguments.open.oflag,
-              clientAuthMsg->arguments.open.mode);
-    auto *openFileResponse = (server_msg *) malloc(sizeof(server_msg));
-
-
-    openFileResponse->response_type = OPEN_FILE_RESPONSE;
-    openFileResponse->response.open.fd = htonl(fd);
-    openFileResponse->error = htonl(errno);
-
-    *response = (char *) openFileResponse;
-    std::cout << "file is open" << std::endl;
-
+bool areAuthorizationDataValid(client_msg *clientAuthMsg) {
+    std::fstream auth_data_file;
+    auth_data_file.open("auth_data.txt", std::ios::in);
+    if(auth_data_file.is_open()) {
+        while(!auth_data_file.eof()) {
+            char login[128];
+            char password[128];
+            getNextLoginAndPassword(login, password, &auth_data_file);
+            if(strcmp(clientAuthMsg->arguments.connection.login, login) == 0 &&
+                strcmp(clientAuthMsg->arguments.connection.password, password) == 0) {
+                  auth_data_file.close();
+                  return true;
+                }
+        }
+        auth_data_file.close();
+        //didn't find right login and password in while loop
+        return false;
+    }else{
+        perror("Can not open auth_data file!");
+        return false;
+    }
 }
 
-void handleReadFileRequest(client_msg *clientMsg, char **response) {
-
-    std::cout<<"read file request"<<std::endl;
-    int fd = ntohl( clientMsg->arguments.read.fd);
-    int size  = ntohl(clientMsg->arguments.read.read_size);
-
-
-    char * buffer = (char*) malloc(size);
-
-    int32_t bytesRead = read(fd,buffer,size);
-    server_msg *serverMsg;
-    if(bytesRead>0)
-    {
-        serverMsg = (server_msg*) malloc(sizeof(server_msg ) + bytesRead);
-        memcpy(serverMsg->response.read.data,buffer,bytesRead);
-        serverMsg->response.read.data[bytesRead-1] = '\0';
-    } else  serverMsg = (server_msg*) malloc(sizeof(server_msg ));
-
-    serverMsg->response.read.size = htonl(bytesRead);
-    serverMsg->error = htonl(errno);
-    serverMsg->response_type = READ_FILE_RESPONSE;
-
-    std::cout<<"read: "<<serverMsg->response.read.data<< std::endl;
-    free(buffer);
-    *response = (char*)serverMsg;
+void getNextLoginAndPassword(char* output_login, char* output_password, std::fstream* data_file) {
+    (*data_file) >> output_login;
+    (*data_file) >> output_password;
 }
 
-void handleWriteFileRequest(client_msg *clientMsg, char **response) {
-
-    std::cout<<"write file request"<<std::endl;
-    int fd = ntohl( clientMsg->arguments.write.fd);
-    int size  = ntohl(clientMsg->arguments.write.write_size);
-
-    char * buffer = (char*) clientMsg->arguments.write.data;
-
-    ssize_t bytesWritten = write(fd,buffer,strlen(buffer));
-
-    auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
-
-    serverMsg->response.write.size = htonl(bytesWritten);
-    serverMsg->error = htonl(errno);
-    serverMsg->response_type = WRITE_FILE_RESPONSE;
-
-
-    std::cout<<"write: "<<buffer<<"size: "<<serverMsg->response.write.size<<  std::endl;
-    *response = (char*)serverMsg;
-}
-
-void handleLSeekFileRequest(client_msg *clientMsg, char **response)
-{
-    std::cout<<"lseek file request"<<std::endl;
-    int fd = ntohl( clientMsg->arguments.lseek.fd);
-    off_t offset  = ntohl(clientMsg->arguments.lseek.offset);
-    int whence  = ntohl(clientMsg->arguments.lseek.whence);
-
-    off_t lseekOffset =  lseek( fd,  offset,  whence);
-    auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
-
-    serverMsg->response.lseek.offset =htonl(lseekOffset);
-    serverMsg->error = htonl(errno);
-    serverMsg->response_type = LSEEK_FILE_RESPONSE;
-
-    std::cout<<"lseek offset:"<<serverMsg->response.lseek.offset<<  std::endl;
-    *response = (char*)serverMsg;
-}
-
-void handleCloseFileRequest(client_msg *clientMsg, char **response)
-{
-    std::cout<<"close file request"<<std::endl;
-    int fd = ntohl( clientMsg->arguments.close.fd);
-
-    int closeStatus = close(fd);
-
-    auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
-
-    serverMsg->response.close.status = closeStatus;
-    serverMsg->error = htonl(errno);
-    serverMsg->response_type = CLOSE_FILE_RESPONSE;
-
-    std::cout<<"close status:"<<closeStatus <<  std::endl;
-    *response = (char*)serverMsg;
-}
-
-void handleUnlinkFileRequest(client_msg *clientMsg, char **response)
-{
-    std::cout<<"unlink file request"<<std::endl;
-
-
-    int closeStatus = unlink((char*)clientMsg->arguments.unlink.path);
-
-    auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
-
-    serverMsg->response.unlink.status = closeStatus;
-    serverMsg->error = htonl(errno);
-    serverMsg->response_type = UNLINK_FILE_RESPONSE;
-
-    std::cout<<"unlink status:"<<closeStatus <<  std::endl;
-    *response = (char*)serverMsg;
-}
-
-void handleFstatFileRequest(client_msg *clientMsg, char **response)
-{
-    std::cout<<"fstat file request"<<std::endl;
-
-    struct stat buffer{};
-    int         status;
-
-    int fd = ntohl( clientMsg->arguments.fstat.fd);
-    status = fstat(fd, &buffer);
-
-    auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
-
-    serverMsg->response.fstat.status = status;
-    serverMsg->response.fstat.buffer = buffer;
-    serverMsg->error = htonl(errno);
-    serverMsg->response_type = FSTAT_FILE_RESPONSE;
-
-    std::cout<<"fstat status:"<<status <<  std::endl;
-    *response = (char*)serverMsg;
+int findNewSerwerPort() {
+    return 8081;
 }

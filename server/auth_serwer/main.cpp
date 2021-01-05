@@ -1,12 +1,17 @@
 #include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <netinet/in.h>
+#include <errno.h>
 #include <arpa/inet.h>
 #include <iostream>
 #include <cstring>
-#include "data_structures/client_msg.h"
-#include "data_structures/codes.h"
-#include "data_structures/server_msg.h"
+#include "../data_structures/client_msg.h"
+#include "../data_structures/codes.h"
+#include "../data_structures/server_msg.h"
 
 void run_server(int);
 
@@ -140,7 +145,7 @@ void handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
         response_auth->response_type = CONNECTION_RESPONSE;
         response_auth->response = {
                 .connection = {
-                        8081,
+                        .new_server_port = 8081,
                 }
         };
         *response = (char *) response_auth;
@@ -154,17 +159,14 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
     std::cout << "path : " << clientAuthMsg->arguments.open.path << "\n";
     std::cout << "oflag : " << clientAuthMsg->arguments.open.oflag << "\n";
     std::cout << "mode : " << clientAuthMsg->arguments.open.mode << "\n";
-    int32_t fd = open((char*))clientAuthMsg->arguments.open.path, clientAuthMsg->arguments.open.oflag , clientAuthMsg->arguments.open.mode);
+    int32_t fd;
+    fd = open((char *) clientAuthMsg->arguments.open.path, (int)clientAuthMsg->arguments.open.oflag,
+              clientAuthMsg->arguments.open.mode);
     auto *openFileResponse = (server_msg *) malloc(sizeof(server_msg));
 
 
     openFileResponse->response_type = OPEN_FILE_RESPONSE;
-    openFileResponse->response = {
-            .open = {
-                    htonl(fd);
-            }
-
-    };
+    openFileResponse->response.open.fd = htonl(fd);
     openFileResponse->error = htonl(errno);
 
     *response = (char *) openFileResponse;
@@ -211,7 +213,7 @@ void handleWriteFileRequest(client_msg *clientMsg, char **response) {
 
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
 
-    serverMsg->response.write.size =htoln(bytesWritten);
+    serverMsg->response.write.size = htonl(bytesWritten);
     serverMsg->error = htonl(errno);
     serverMsg->response_type = WRITE_FILE_RESPONSE;
 
@@ -227,10 +229,10 @@ void handleLSeekFileRequest(client_msg *clientMsg, char **response)
     off_t offset  = ntohl(clientMsg->arguments.lseek.offset);
     int whence  = ntohl(clientMsg->arguments.lseek.whence);
 
-    off_t lseekOffset =  lseek( fd,  offset,  whence)
+    off_t lseekOffset =  lseek( fd,  offset,  whence);
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
 
-    serverMsg->response.lseek.offset =htoln(lseekOffset);
+    serverMsg->response.lseek.offset =htonl(lseekOffset);
     serverMsg->error = htonl(errno);
     serverMsg->response_type = LSEEK_FILE_RESPONSE;
 
@@ -272,17 +274,15 @@ void handleUnlinkFileRequest(client_msg *clientMsg, char **response)
     *response = (char*)serverMsg;
 }
 
-void handleUnlinkFileRequest(client_msg *clientMsg, char **response)
+void handleFstatFileRequest(client_msg *clientMsg, char **response)
 {
     std::cout<<"fstat file request"<<std::endl;
 
-    struct stat buffer;
+    struct stat buffer{};
     int         status;
 
-
-    status = fstat(fildes, &buffer);
-
-    int closeStatus = unlink((char*)clientMsg->arguments.unlink.path);
+    int fd = ntohl( clientMsg->arguments.fstat.fd);
+    status = fstat(fd, &buffer);
 
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
 
@@ -294,11 +294,3 @@ void handleUnlinkFileRequest(client_msg *clientMsg, char **response)
     std::cout<<"fstat status:"<<status <<  std::endl;
     *response = (char*)serverMsg;
 }
-
-
-struct stat buffer;
-int         status;
-
-
-
-

@@ -1,3 +1,0 @@
-/home/michal/Desktop/tin/TIN_NFS/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/michal/Desktop/tin/TIN_NFS/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/michal/Desktop/tin/TIN_NFS/cmake-build-debug/CMakeFiles/TIN_NFS.dir

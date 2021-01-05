@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/TIN_NFS.dir/client/main.cpp.o CMakeFiles/TIN_NFS.dir/server/main.cpp.o  -o TIN_NFS 

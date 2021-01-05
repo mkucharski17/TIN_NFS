@@ -11,11 +11,12 @@ struct server_open {
 };
 
 struct server_close {
+    unsigned int status;
 } ;
 
 struct server_read {
     unsigned int size;
-    unsigned int data;
+    char data[];
 };
 
 struct server_write {
@@ -27,11 +28,13 @@ struct server_lseek {
 };
 
 struct server_unlink {
+    unsigned int status;
 };
 
 
 struct server_fstat {
-    //todo zdefiniuj struskturę stat
+    struct stat buffer;
+    int         status;
 };
 
 struct server_opendir {

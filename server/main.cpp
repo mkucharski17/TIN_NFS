@@ -175,12 +175,7 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
 
 
     openFileResponse->response_type = OPEN_FILE_RESPONSE;
-    openFileResponse->response = {
-            .open = {
-                    htonl(fd);
-            }
-
-    };
+    openFileResponse->response.open.fd = htonl(fd);
     openFileResponse->error = htonl(errno);
 
     *response = (char *) openFileResponse;
@@ -338,17 +333,15 @@ void handleUnlinkFileRequest(client_msg *clientMsg, char **response)
     *response = (char*)serverMsg;
 }
 
-void handleUnlinkFileRequest(client_msg *clientMsg, char **response)
+void handleFstatFileRequest(client_msg *clientMsg, char **response)
 {
     std::cout<<"fstat file request"<<std::endl;
 
     struct stat buffer;
     int         status;
 
-
-    status = fstat(fildes, &buffer);
-
-    int closeStatus = unlink((char*)clientMsg->arguments.unlink.path);
+    int fd = ntohl( clientMsg->arguments.fstat.fd);
+    status = fstat(fd, &buffer);
 
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
 
@@ -362,8 +355,7 @@ void handleUnlinkFileRequest(client_msg *clientMsg, char **response)
 }
 
 
-struct stat buffer;
-int         status;
+
 
 
 

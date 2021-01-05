@@ -44,9 +44,14 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input, 
         case OPEN_FILE_RESPONSE:
             std::cout << "file descriptor: " << (*serverResponse)->response.open.fd << std::endl;
             break;
-
+        case OPEN_DIR_RESPONSE:
+            std::cout << "dir descriptor: " << (*serverResponse)->response.opendir.dir_fd << std::endl;
+            break;
         case READ_FILE_RESPONSE:
             std::cout << "read:  " << (*serverResponse)->response.read.data << std::endl;
+            break;
+        case READ_DIR_RESPONSE:
+            std::cout << "read dir:  " << (*serverResponse)->response.readdir.name << std::endl;
             break;
         case WRITE_FILE_RESPONSE:
             std::cout << "write:  " << (*serverResponse)->response.write.size << std::endl;
@@ -57,13 +62,15 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input, 
         case CLOSE_FILE_RESPONSE:
             std::cout << "close:  " << (*serverResponse)->response.close.status << std::endl;
             break;
+        case CLOSE_DIR_RESPONSE:
+            std::cout << "close dir:  " << (*serverResponse)->response.closedir.status << std::endl;
+            break;
         case UNLINK_FILE_RESPONSE:
             std::cout << "unlink:  " << (*serverResponse)->response.unlink.status << std::endl;
             break;
         case FSTAT_FILE_RESPONSE:
             std::cout << "fstat:  " << (*serverResponse)->response.fstat.status << std::endl;
             break;
-
         default:
             std::cout << "unknown response type" << std::endl;
             return ERROR;

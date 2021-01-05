@@ -15,6 +15,9 @@ CMakeFiles/client.dir/file/open/open.cpp.o: ../send_message/send_message.h
 CMakeFiles/client.dir/file/open/open.cpp.o: ../file/open/open.cpp
 CMakeFiles/client.dir/file/open/open.cpp.o: ../file/open/open.h
 
+CMakeFiles/client.dir/fileOperations.cpp.o: ../data_structures/client_msg.h
+CMakeFiles/client.dir/fileOperations.cpp.o: ../data_structures/codes.h
+CMakeFiles/client.dir/fileOperations.cpp.o: ../data_structures/server_msg.h
 CMakeFiles/client.dir/fileOperations.cpp.o: ../fileOperations.cpp
 CMakeFiles/client.dir/fileOperations.cpp.o: ../fileOperations.h
 

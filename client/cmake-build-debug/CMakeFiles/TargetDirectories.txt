@@ -1,3 +1,3 @@
-/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir
+/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir

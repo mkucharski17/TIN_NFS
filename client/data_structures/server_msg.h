@@ -2,6 +2,8 @@
 #define TIN_NFS_SERVER_MSG_H
 
 
+#include <sys/stat.h>
+
 struct server_connection {
     unsigned int new_server_port;
 };

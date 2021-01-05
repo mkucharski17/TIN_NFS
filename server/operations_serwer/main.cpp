@@ -1,19 +1,22 @@
 #include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <netinet/in.h>
+#include <errno.h>
 #include <arpa/inet.h>
 #include <iostream>
 #include <cstring>
-#include <dirent.h>
-#include "data_structures/client_msg.h"
-#include "data_structures/codes.h"
-#include "data_structures/server_msg.h"
+#include <limits.h>
+#include "../data_structures/client_msg.h"
+#include "../data_structures/codes.h"
+#include "../data_structures/server_msg.h"
 
 void run_server(int);
 
 void getClientMsgFromSocketAndSendResponse(int new_socket);
-
-void handleConnectionRequest(client_msg *clientAuthMsg, char **response);
 
 void handleOpenFileRequest(client_msg *clientAuthMsg, char **response);
 
@@ -35,14 +38,31 @@ void handleUnlinkFileRequest(client_msg *clientMsg, char **response);
 
 void handleFstatFileRequest(client_msg *clientMsg, char **response);
 
+int main(int argc, char *argv[]){
+    if(argc != 2) {
+      perror("Wrong operationsSerwer argumenst number!");
+      exit(EXIT_FAILURE);
+    }
 
-int main() {
+    //converting argv[1] to portNumber
+    char* p;
+    errno = 0;
+    long arg = strtol(argv[1], &p, 10);
+    if (*p != '\0' || errno != 0) {
+        return 1;
+    }
 
-    run_server(8080);
+    if (arg < INT_MIN || arg > INT_MAX) {
+        return 1;
+    }
 
+    int serwer_port = arg;
+
+    run_server(serwer_port);
 }
 
 void run_server(int portNumber) {
+  /*
     int server_fd, new_socket;
     struct sockaddr_in address;
     int opt = 1;
@@ -85,7 +105,12 @@ void run_server(int portNumber) {
             exit(EXIT_FAILURE);
         }
         getClientMsgFromSocketAndSendResponse(new_socket);
-    }
+    }*/
+    std::cout<<"weszlo do nowego serwera "<<portNumber<<"\n";
+
+
+              int x;
+          std::cin>>x;
 }
 
 void getClientMsgFromSocketAndSendResponse(int new_socket) {
@@ -103,9 +128,6 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
     std::cout << "request type : " << clientMsg->request_type << std::endl;
     //todo tutaj trzeba bedzie zrobić switcha na rozne typy requestow
     switch (clientMsg->request_type) {
-        case CONNECTION_REQUEST:
-            handleConnectionRequest(clientMsg, &response);
-            break;
         case OPEN_FILE_REQUEST:
             handleOpenFileRequest(clientMsg, &response);
             break;
@@ -145,32 +167,14 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
     std::cout << "response is sent" << std::endl;
 }
 
-void handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
-    std::cout << "login : " << clientAuthMsg->arguments.connection.login << "\n";
-    std::cout << "password : " << clientAuthMsg->arguments.connection.password << "\n";
-    //todo tutaj mamy juz dane do autoryzacji , wiec trzeba dodac dalsze działania dotyczace autoryzacji
-    // na razie sprawdzanie dla przykladowych danych login:michal haslo:haslo
-    auto *response_auth = (server_msg *) malloc(sizeof(server_msg));
-
-    if (strcmp(clientAuthMsg->arguments.connection.password, "haslo") == 0) {
-        response_auth->response_type = CONNECTION_RESPONSE;
-        response_auth->response = {
-                .connection = {
-                        8081,
-                }
-        };
-        *response = (char *) response_auth;
-        std::cout << "authorized properly" << std::endl;
-    } else {
-        std::cout << "authorization failed" << std::endl;
-    }
-}
 
 void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
     std::cout << "path : " << clientAuthMsg->arguments.open.path << "\n";
     std::cout << "oflag : " << clientAuthMsg->arguments.open.oflag << "\n";
     std::cout << "mode : " << clientAuthMsg->arguments.open.mode << "\n";
-    int32_t fd = open((char*))clientAuthMsg->arguments.open.path, clientAuthMsg->arguments.open.oflag , clientAuthMsg->arguments.open.mode);
+    int32_t fd;
+    fd = open((char *) clientAuthMsg->arguments.open.path, (int)clientAuthMsg->arguments.open.oflag,
+              clientAuthMsg->arguments.open.mode);
     auto *openFileResponse = (server_msg *) malloc(sizeof(server_msg));
 
 
@@ -256,7 +260,7 @@ void handleWriteFileRequest(client_msg *clientMsg, char **response) {
 
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
 
-    serverMsg->response.write.size =htoln(bytesWritten);
+    serverMsg->response.write.size = htonl(bytesWritten);
     serverMsg->error = htonl(errno);
     serverMsg->response_type = WRITE_FILE_RESPONSE;
 
@@ -272,10 +276,10 @@ void handleLSeekFileRequest(client_msg *clientMsg, char **response)
     off_t offset  = ntohl(clientMsg->arguments.lseek.offset);
     int whence  = ntohl(clientMsg->arguments.lseek.whence);
 
-    off_t lseekOffset =  lseek( fd,  offset,  whence)
+    off_t lseekOffset =  lseek( fd,  offset,  whence);
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
 
-    serverMsg->response.lseek.offset =htoln(lseekOffset);
+    serverMsg->response.lseek.offset =htonl(lseekOffset);
     serverMsg->error = htonl(errno);
     serverMsg->response_type = LSEEK_FILE_RESPONSE;
 
@@ -337,7 +341,7 @@ void handleFstatFileRequest(client_msg *clientMsg, char **response)
 {
     std::cout<<"fstat file request"<<std::endl;
 
-    struct stat buffer;
+    struct stat buffer{};
     int         status;
 
     int fd = ntohl( clientMsg->arguments.fstat.fd);
@@ -353,10 +357,3 @@ void handleFstatFileRequest(client_msg *clientMsg, char **response)
     std::cout<<"fstat status:"<<status <<  std::endl;
     *response = (char*)serverMsg;
 }
-
-
-
-
-
-
-

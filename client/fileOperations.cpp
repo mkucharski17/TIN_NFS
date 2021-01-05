@@ -1,6 +1,6 @@
 
 #include "fileOperations.h"
-
+/*
 
 int mynfs_read(int fd, void *buf, int count) {
     client_msg clientMsg;
@@ -119,11 +119,11 @@ int mynfs_unlink(char *host, char *path) {
 }
 
 int mynfs_fstat(int mynfs_fd,struct stat *statbuf) {
-    client_msg clientMsg;
+    client_msg clientMsg{};
     server_msg *serverMsg;
 
     clientMsg.request_type =  FSTAT_FILE_REQUEST;
-    clientMsg.arguments.close.fd = htonl(fd);
+    clientMsg.arguments.close.fd = htonl(mynfs_fd);
 
     sendMessageAndGetResponse(host, 8080, &clientMsg, &serverMsg);
 
@@ -133,3 +133,4 @@ int mynfs_fstat(int mynfs_fd,struct stat *statbuf) {
     std::cout << "RECEIVED mynfs_fstat RESPONSE status: " << status << std::endl;
     return status;
 }
+ */

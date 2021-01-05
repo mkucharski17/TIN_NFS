@@ -13,9 +13,9 @@ public:
         static Storage INSTANCE;
         return INSTANCE;
     }
-    DIR* DirpHolder::get(int fd);
-    void DirpHolder::add(int fd, DIR *dir);
-    void DirpHolder::remove(int fd);
+    DIR* get(int fd);
+    void add(int fd, DIR *dir);
+    void remove(int fd);
 };
 
 #endif //TIN_NFS_STORAGE_H

@@ -11,6 +11,7 @@
 #include <cstring>
 #include <limits.h>
 #include <dirent.h>
+#include "Storage.h"
 #include "../data_structures/client_msg.h"
 #include "../data_structures/codes.h"
 #include "../data_structures/server_msg.h"

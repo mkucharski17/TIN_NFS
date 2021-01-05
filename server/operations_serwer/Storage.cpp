@@ -1,5 +1,7 @@
 #include "Storage.h"
 
+Storage::Storage() {};
+
 DIR* Storage::get(int fd) {
     return map.find(fd)->second;
 }

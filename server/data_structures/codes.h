@@ -29,9 +29,10 @@
 #define FSTAT_FILE_RESPONSE 16
 
 /// file mode
+/*
 #define O_RDONLY 0
 #define O_WRONLY 1
 #define O_RDWR 2
-#define O_CREAT 3
+#define O_CREAT 3*/
 
 #endif //TIN_NFS_CODES_H

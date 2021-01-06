@@ -12,7 +12,7 @@
 
 int mynfs_read(int fd, void *buf, int count);
 
-int mynfs_write(int fd, const void *buf, int count);
+int mynfs_write(int fd,  void *buf, int count);
 int mynfs_lseek(int fd, int offset, int whence);
 int mynfs_close(int fd);
 int mynfs_unlink(char *host, char *path);

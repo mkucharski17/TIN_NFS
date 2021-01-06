@@ -1,6 +1,7 @@
 #ifndef TIN_NFS_SERVER_MSG_H
 #define TIN_NFS_SERVER_MSG_H
 
+#include <sys/stat.h>
 
 struct server_connection {
     unsigned int new_server_port;
@@ -16,7 +17,7 @@ struct server_close {
 
 struct server_read {
     unsigned int size;
-    char data[];
+    char data[1024];
 };
 
 struct server_write {

@@ -1,9 +1,16 @@
 #include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <netinet/in.h>
+#include <errno.h>
 #include <arpa/inet.h>
 #include <iostream>
 #include <cstring>
+#include <limits.h>
+
 #include "data_structures/client_msg.h"
 #include "data_structures/codes.h"
 #include "data_structures/server_msg.h"
@@ -154,9 +161,9 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
     std::cout << "path : " << clientAuthMsg->arguments.open.path << "\n";
     std::cout << "oflag : " << clientAuthMsg->arguments.open.oflag << "\n";
     std::cout << "mode : " << clientAuthMsg->arguments.open.mode << "\n";
-    int32_t fd = open((char*))clientAuthMsg->arguments.open.path, clientAuthMsg->arguments.open.oflag , clientAuthMsg->arguments.open.mode);
+    int32_t fd = open((char*)clientAuthMsg->arguments.open.path, clientAuthMsg->arguments.open.oflag , clientAuthMsg->arguments.open.mode);
     auto *openFileResponse = (server_msg *) malloc(sizeof(server_msg));
-
+    std::cout<<"fd: "<<fd<<std::endl;
 
     openFileResponse->response_type = OPEN_FILE_RESPONSE;
     openFileResponse->response.open.fd = htonl(fd);
@@ -178,12 +185,15 @@ void handleReadFileRequest(client_msg *clientMsg, char **response) {
 
     int32_t bytesRead = read(fd,buffer,size);
     server_msg *serverMsg;
-    if(bytesRead>0)
+    /*if(bytesRead>0)
     {
         serverMsg = (server_msg*) malloc(sizeof(server_msg ) + bytesRead);
         memcpy(serverMsg->response.read.data,buffer,bytesRead);
-        serverMsg->response.read.data[bytesRead-1] = '\0';
-    } else  serverMsg = (server_msg*) malloc(sizeof(server_msg ));
+        //serverMsg->response.read.data[bytesRead-1] = '\0';
+    } else*/
+
+        serverMsg = (server_msg*) malloc(sizeof(server_msg ));
+    memcpy(serverMsg->response.read.data,buffer,bytesRead);
 
     serverMsg->response.read.size = htonl(bytesRead);
     serverMsg->error = htonl(errno);
@@ -199,14 +209,13 @@ void handleWriteFileRequest(client_msg *clientMsg, char **response) {
     std::cout<<"write file request"<<std::endl;
     int fd = ntohl( clientMsg->arguments.write.fd);
     int size  = ntohl(clientMsg->arguments.write.write_size);
-
     char * buffer = (char*) clientMsg->arguments.write.data;
 
-    ssize_t bytesWritten = write(fd,buffer,strlen(buffer));
+    ssize_t bytesWritten = write(fd,buffer,size);
 
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
 
-    serverMsg->response.write.size =htoln(bytesWritten);
+    serverMsg->response.write.size =htonl(bytesWritten);
     serverMsg->error = htonl(errno);
     serverMsg->response_type = WRITE_FILE_RESPONSE;
 
@@ -222,10 +231,10 @@ void handleLSeekFileRequest(client_msg *clientMsg, char **response)
     off_t offset  = ntohl(clientMsg->arguments.lseek.offset);
     int whence  = ntohl(clientMsg->arguments.lseek.whence);
 
-    off_t lseekOffset =  lseek( fd,  offset,  whence)
+    off_t lseekOffset =  lseek( fd,  offset,  whence);
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
 
-    serverMsg->response.lseek.offset =htoln(lseekOffset);
+    serverMsg->response.lseek.offset =htonl(lseekOffset);
     serverMsg->error = htonl(errno);
     serverMsg->response_type = LSEEK_FILE_RESPONSE;
 

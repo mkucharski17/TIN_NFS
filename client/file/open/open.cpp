@@ -19,5 +19,5 @@ unsigned int mynfs_open (char *host, char *path, int oflag, int mode) {
     //todo trzebaby jakoś port tu przekazać. Może globalny zrobić ?
     sendMessageAndGetResponse(host, 8080, &openRequest, &openResponse);
 
-    return openResponse->response.open.fd;
+    return ntohl(openResponse->response.open.fd);
 }

@@ -13,10 +13,15 @@ unsigned int sendConnectRequest(char *host, char *login, char *password) {
     strcpy((char *) input.arguments.connection.password, password);
     sendMessageAndGetResponse(host, 8080, &input, &serverResponse);
 
-    current_connection = std::make_pair(host,serverResponse->response.connection.new_server_port);
-    connections.push_back(current_connection);
+    if(serverResponse->error == (unsigned int)33)
+    {
+        return 0;
+    } else {
+        current_connection = std::make_pair(host,serverResponse->response.connection.new_server_port);
+        connections.push_back(current_connection);
 
-    return serverResponse->response.connection.new_server_port;
+        return serverResponse->response.connection.new_server_port;
+    }
 }
 
 void changeCurrentConnection(int connection_index)

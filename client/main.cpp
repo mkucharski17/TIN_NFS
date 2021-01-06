@@ -16,7 +16,10 @@ void createConnection() {
     std::cin >> login;
     std::cout << "Podaj haslo: ";
     std::cin >> password;
-    sendConnectRequest(host, login, password);
+    if(!sendConnectRequest(host, login, password))
+    {
+        std::cout << "Authorization error!\n";
+    }
 }
 
 void disconnect() {

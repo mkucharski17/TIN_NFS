@@ -126,7 +126,8 @@ int mynfs_fstat(int mynfs_fd,struct stat *statbuf)
 
     sendMessageAndGetResponse((char *) "127.0.0.1", 8080, &clientMsg, &serverMsg);
 
-    //memcpy(statbuf, (struct stat)serverMsg->response.fstat.buffer,sizeof(struct stat));
+    //memcpy(statbuf, serverMsg->response.fstat.buffer,sizeof(struct stat));
+    *statbuf = serverMsg->response.fstat.buffer;
     int status = ntohl(serverMsg->response.fstat.status);
 
     std::cout << "RECEIVED mynfs_fstat RESPONSE status: " << status << std::endl;

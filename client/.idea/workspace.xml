@@ -12,7 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c115b6aa-26f7-4991-9f15-18b9cc24d2c6" name="Default Changelist" comment="klient działa w pętli">
-      <change afterPath="$PROJECT_DIR$/Testing/Temporary/LastTest.log" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/client" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/client.cbp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../server/CMakeFiles/3.17.5/CMakeCCompiler.cmake" afterDir="false" />
@@ -24,11 +23,12 @@
       <change afterPath="$PROJECT_DIR$/../server/CMakeFiles/3.17.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../server/CMakeFiles/clion-environment.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../server/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/lel.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../server/server.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileOperations.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/fileOperations.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/send_message/send_message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/send_message/send_message.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,6 +69,11 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="client" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="client" TARGET_NAME="client" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="client" RUN_TARGET_NAME="client">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -90,7 +95,7 @@
       <workItem from="1609268499484" duration="7215000" />
       <workItem from="1609931829725" duration="10856000" />
       <workItem from="1609944550093" duration="2525000" />
-      <workItem from="1609947909294" duration="3238000" />
+      <workItem from="1609947909294" duration="6989000" />
     </task>
     <task id="LOCAL-00001" summary="wysyłanie auth requestu działa">
       <created>1609178432904</created>
@@ -142,11 +147,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>34</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/fileOperations.cpp</url>
           <line>38</line>
           <option name="timeStamp" value="12" />
@@ -155,6 +155,16 @@
           <url>file://$PROJECT_DIR$/fileOperations.cpp</url>
           <line>37</line>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>32</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>42</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

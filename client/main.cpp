@@ -25,12 +25,22 @@ int main() {
     ///polaczenie z serwerem
     sendConnectRequest((char *) "127.0.0.1", (char *) "michal", (char *) "haslo");
     ///otwarcie pliku
-     auto fd = mynfs_open((char *) "127.0.0.1", (char *) "lel.txt",O_RDWR,777);
-     char  text [1024];
+     auto fd = mynfs_open((char *) "127.0.0.1", (char *) "lel.txt",O_RDWR ,777);
+     /*char  text [100] = "hello worlddddddd";
+    //std::cout<<mynfs_unlink((char *) "127.0.0.1", (char *) "lel.txt");
 
+     mynfs_write(fd, &text , 12);
+     char  text2[50] = "helloooooooooooooooooooooooo";
 
-     mynfs_read(fd, &text , 10);
-     std::cout<<"odczytano "<<text;
+     mynfs_lseek(fd,0,SEEK_CUR);
+    mynfs_write(fd, &text2 , 20);
+    char text3[1000];
+    //mynfs_read(fd,&text3,100);
+    //std::cout<<"odczytano "<<text3 <<std::endl;*/
+     struct stat st;
+     mynfs_fstat(fd,&st);
+
+     mynfs_close(fd);
 
     return 0;
 

@@ -12,6 +12,8 @@
 #include <arpa/inet.h>
 #include <iostream>
 #include <cstring>
+#include <dirent.h>
+#include "../storage/Storage.h"
 #include "../../data_structures/client_msg.h"
 #include "../../data_structures/codes.h"
 #include "../../data_structures/server_msg.h"
@@ -31,5 +33,11 @@ void handleUnlinkFileRequest(client_msg *clientMsg, char **response);
 void handleFstatFileRequest(client_msg *clientMsg, char **response);
 
 void handleDisconnectRequest(client_msg *clientMsg, char **response);
+
+void handleOpenDirRequest(client_msg *clientAuthMsg, char **response);
+
+void handleReadDirRequest(client_msg *clientMsg, char **response);
+
+void handleCloseDirRequest(client_msg *clientMsg, char **response);
 
 #endif

@@ -8,12 +8,15 @@
 #include <data_structures/codes.h>
 #include <data_structures/server_msg.h>
 #include <send_message/send_message.h>
+#include <vector>
 
-extern unsigned int port;
+extern std::pair<char*, unsigned int>  current_connection;
 
-extern char * host_name;
+extern std::vector<std::pair<char*, unsigned int>> connections;
 
 unsigned int sendConnectRequest(char *host,char *login, char *password);
+
+void changeCurrentConnection(int connection_index);
 
 void sendDisconnectRequest();
 

@@ -2,6 +2,7 @@
 #define TIN_NFS_DIRSTORAGE_H
 
 #include <map>
+#include <vector>
 #include <dirent.h>
 #include <iostream>
 

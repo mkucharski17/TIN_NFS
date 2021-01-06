@@ -41,7 +41,7 @@ void openDirectory() {
     std::string path;
     std::cout << "Provide directory path:\n";
     std::cin >> path;
-    std::count << "path: " << path << "\n";
+    std::cout << "path: " << path << "\n";
     int dir_fd = mynfs_opendir((char*) current_connection.first, (char*) path.c_str());
     DirStorage::instance().add(path, dir_fd);
 }

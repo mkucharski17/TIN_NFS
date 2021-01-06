@@ -5,9 +5,7 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
     std::cout << "path : " << clientAuthMsg->arguments.open.path << "\n";
     std::cout << "oflag : " << clientAuthMsg->arguments.open.oflag << "\n";
     std::cout << "mode : " << clientAuthMsg->arguments.open.mode << "\n";
-    int32_t fd;
-    fd = open((char *) clientAuthMsg->arguments.open.path, (int)clientAuthMsg->arguments.open.oflag,
-              clientAuthMsg->arguments.open.mode);
+    int32_t fd = open((char*)clientAuthMsg->arguments.open.path, clientAuthMsg->arguments.open.oflag , clientAuthMsg->arguments.open.mode);
     auto *openFileResponse = (server_msg *) malloc(sizeof(server_msg));
 
 
@@ -31,12 +29,9 @@ void handleReadFileRequest(client_msg *clientMsg, char **response) {
 
     int32_t bytesRead = read(fd,buffer,size);
     server_msg *serverMsg;
-    if(bytesRead>0)
-    {
-        serverMsg = (server_msg*) malloc(sizeof(server_msg ) + bytesRead);
-        memcpy(serverMsg->response.read.data,buffer,bytesRead);
-        serverMsg->response.read.data[bytesRead-1] = '\0';
-    } else  serverMsg = (server_msg*) malloc(sizeof(server_msg ));
+    
+    serverMsg = (server_msg*) malloc(sizeof(server_msg ));
+    memcpy(serverMsg->response.read.data,buffer,bytesRead);
 
     serverMsg->response.read.size = htonl(bytesRead);
     serverMsg->error = htonl(errno);
@@ -52,10 +47,9 @@ void handleWriteFileRequest(client_msg *clientMsg, char **response) {
     std::cout<<"write file request"<<std::endl;
     int fd = ntohl( clientMsg->arguments.write.fd);
     int size  = ntohl(clientMsg->arguments.write.write_size);
-
     char * buffer = (char*) clientMsg->arguments.write.data;
 
-    ssize_t bytesWritten = write(fd,buffer,strlen(buffer));
+    ssize_t bytesWritten = write(fd,buffer,size);
 
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
 
@@ -67,25 +61,6 @@ void handleWriteFileRequest(client_msg *clientMsg, char **response) {
     std::cout<<"write: "<<buffer<<"size: "<<serverMsg->response.write.size<<  std::endl;
     *response = (char*)serverMsg;
 }
-
-void handleLSeekFileRequest(client_msg *clientMsg, char **response)
-{
-    std::cout<<"lseek file request"<<std::endl;
-    int fd = ntohl( clientMsg->arguments.lseek.fd);
-    off_t offset  = ntohl(clientMsg->arguments.lseek.offset);
-    int whence  = ntohl(clientMsg->arguments.lseek.whence);
-
-    off_t lseekOffset =  lseek( fd,  offset,  whence);
-    auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
-
-    serverMsg->response.lseek.offset =htonl(lseekOffset);
-    serverMsg->error = htonl(errno);
-    serverMsg->response_type = LSEEK_FILE_RESPONSE;
-
-    std::cout<<"lseek offset:"<<serverMsg->response.lseek.offset<<  std::endl;
-    *response = (char*)serverMsg;
-}
-
 void handleCloseFileRequest(client_msg *clientMsg, char **response)
 {
     std::cout<<"close file request"<<std::endl;
@@ -124,7 +99,7 @@ void handleFstatFileRequest(client_msg *clientMsg, char **response)
 {
     std::cout<<"fstat file request"<<std::endl;
 
-    struct stat buffer{};
+    struct stat buffer;
     int         status;
 
     int fd = ntohl( clientMsg->arguments.fstat.fd);

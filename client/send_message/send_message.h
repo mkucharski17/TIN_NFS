@@ -13,7 +13,6 @@
 #include <data_structures/server_msg.h>
 #include <unistd.h>
 
-
 int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input, server_msg **serverResponse);
 
 #endif //CLIENT_SEND_MESSAGE_H

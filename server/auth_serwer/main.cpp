@@ -44,7 +44,6 @@ void run_authorization_server(int portNumber) {
         exit(EXIT_FAILURE);
     }
 
-    // attach socket on 8080
     if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
                    &opt, sizeof(opt))) {
         perror("setsockopt");
@@ -65,7 +64,6 @@ void run_authorization_server(int portNumber) {
         exit(EXIT_FAILURE);
     }
 
-    //sockets' handling
     while (true) {
         new_socket = accept(server_fd, (struct sockaddr *) &address,
                             (socklen_t *) &addrlen);
@@ -98,8 +96,7 @@ void getClientAuthorizationMsg(int new_socket) {
     }
 
     int new_server_port=0;
-    if((new_server_port = handleConnectionRequest(clientMsg, &response)) != -1) {
-      std::string command = "gnome-terminal -e 'sh -c \"./operationsSerwer ";
+    if((new_server_port = handleConnectionRequest(clientMsg, &response)) != 0) {
       command += std::to_string(new_server_port);
       command += "\"'";
       std::cout<<command<<"\n";
@@ -107,16 +104,16 @@ void getClientAuthorizationMsg(int new_socket) {
 
       send(new_socket, response, sizeof(server_msg), 0);
       std::cout << "response is sent" << std::endl;
+    } else {
+      perror("Couldn't handle connection request!");
     }
 }
 
 
 
-int handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
+unsigned int handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
     std::cout << "login : " << clientAuthMsg->arguments.connection.login << "\n";
     std::cout << "password : " << clientAuthMsg->arguments.connection.password << "\n";
-    //todo tutaj mamy juz dane do autoryzacji , wiec trzeba dodac dalsze działania dotyczace autoryzacji
-    // na razie sprawdzanie dla przykladowych danych login:michal haslo:haslo
     auto *response_auth = (server_msg *) malloc(sizeof(server_msg));
 
     int new_server_port;
@@ -130,11 +127,10 @@ int handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
                 }
         };
         *response = (char *) response_auth;
-        std::cout << "authorized properly" << std::endl;
         return new_server_port;
     } else {
-        std::cout << "authorization failed" << std::endl;
-        return -1;
+         perror("Authorization failed");
+        return 0;
     }
 }
 
@@ -166,6 +162,37 @@ void getNextLoginAndPassword(char* output_login, char* output_password, std::fst
     (*data_file) >> output_password;
 }
 
-int findNewSerwerPort() {
-    return 8081;
+unsigned int findNewSerwerPort() {
+    int test_socket = socket(AF_INET, SOCK_STREAM, 0);
+    if(test_socket < 0) {
+        perror("Socket error\n");
+        return -1;
+    }
+
+    struct sockaddr_in serv_addr;
+    bzero((char *) &serv_addr, sizeof(serv_addr));
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_addr.s_addr = INADDR_ANY;
+    serv_addr.sin_port = 0;
+    if (bind(test_socket, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
+        if(errno == EADDRINUSE) {
+            perror("the port is not available. already to other process");
+            return -1;
+        } else {
+            perror("could not bind to process");
+            return -1;
+        }
+    }
+
+    socklen_t len = sizeof(serv_addr);
+    if (getsockname(test_socket, (struct sockaddr *)&serv_addr, &len) == -1) {
+        perror("Error in getsockname!");
+        return -1;
+    }
+    if (close (test_socket) < 0 ) {
+        perror("Did not close socket!");
+        return -1;
+    }
+
+    return ntohs(serv_addr.sin_port);
 }

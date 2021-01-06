@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
       exit(EXIT_FAILURE);
     }
 
-    //converting argv[1] to portNumber
+    //converting argv[1] to int
     char* p;
     errno = 0;
     long arg = strtol(argv[1], &p, 10);
@@ -56,7 +56,6 @@ int main(int argc, char *argv[]){
 }
 
 void run_server(int portNumber) {
-  /*
     int server_fd, new_socket;
     struct sockaddr_in address;
     int opt = 1;
@@ -99,12 +98,7 @@ void run_server(int portNumber) {
             exit(EXIT_FAILURE);
         }
         getClientMsgFromSocketAndSendResponse(new_socket);
-    }*/
-    std::cout<<"weszlo do nowego serwera "<<portNumber<<"\n";
-
-
-              int x;
-          std::cin>>x;
+    }
 }
 
 void getClientMsgFromSocketAndSendResponse(int new_socket) {
@@ -120,7 +114,6 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
     auto clientMsg = (client_msg *) buf;
     std::cout << "received bytes : " << bytes << std::endl;
     std::cout << "request type : " << clientMsg->request_type << std::endl;
-    //todo tutaj trzeba bedzie zrobić switcha na rozne typy requestow
     switch (clientMsg->request_type) {
         case OPEN_FILE_REQUEST:
             handleOpenFileRequest(clientMsg, &response);

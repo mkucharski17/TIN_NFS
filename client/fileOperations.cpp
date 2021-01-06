@@ -34,12 +34,8 @@ int mynfs_read(int fd, void *buf, int count)
 
     int len = ntohl(serverMsg->response.read.size);
     std::cout << "RECEIVED mynfs_read RESPONSE size: " << len << std::endl;
-    char  buff[1024] ;
 
-    //memcpy(buff, serverMsg->response.read.data, count);
-    //bcopy(serverMsg->response.read.data,(char* )buf,len);
-    //buff = serverMsg->response.read.data;
-    std::cout<<"elellel"<<serverMsg->response.read.data<<std::endl;
+    memcpy(buf, serverMsg->response.read.data, count);
     return len;
 }
 

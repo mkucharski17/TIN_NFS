@@ -26,11 +26,11 @@ int main() {
     sendConnectRequest((char *) "127.0.0.1", (char *) "michal", (char *) "haslo");
     ///otwarcie pliku
      auto fd = mynfs_open((char *) "127.0.0.1", (char *) "lel.txt",O_RDWR,777);
-     char * text = (char*)(sizeof(char)*1024);
+     char  text [1024];
 
 
-     mynfs_read(fd,(char*) text , 10);
-    //std::cout<<"elellel "<<*text;
+     mynfs_read(fd, &text , 10);
+     std::cout<<"odczytano "<<text;
 
     return 0;
 

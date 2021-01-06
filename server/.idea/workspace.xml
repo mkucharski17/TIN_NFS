@@ -15,8 +15,6 @@
       <change afterPath="$PROJECT_DIR$/../client/Testing/Temporary/LastTest.log" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../client/client" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../client/client.cbp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/server.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/CMakeFiles/3.17.5/CMakeCCompiler.cmake" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/CMakeFiles/3.17.5/CMakeCXXCompiler.cmake" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/CMakeFiles/3.17.5/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
@@ -27,27 +25,11 @@
       <change afterPath="$PROJECT_DIR$/CMakeFiles/clion-environment.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Testing/Temporary/LastTest.log" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/server.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/.idea/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../client/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/data_structures/client_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../client/data_structures/client_msg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/data_structures/codes.h" beforeDir="false" afterPath="$PROJECT_DIR$/../client/data_structures/codes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/data_structures/server_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../client/data_structures/server_msg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/file/open/open.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../client/file/open/open.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/fileOperations.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../client/fileOperations.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/fileOperations.h" beforeDir="false" afterPath="$PROJECT_DIR$/../client/fileOperations.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../client/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/send_message/send_message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../client/send_message/send_message.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures/client_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures/client_msg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures/codes.h" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures/codes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures/server_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures/server_msg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,11 +71,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -110,6 +87,7 @@
       <workItem from="1609268494361" duration="5633000" />
       <workItem from="1609934486647" duration="7548000" />
       <workItem from="1609944529687" duration="1901000" />
+      <workItem from="1609947893995" duration="1336000" />
     </task>
     <task id="LOCAL-00001" summary="przyjmowanie requestu autoryzacji zrobione">
       <created>1609179014989</created>

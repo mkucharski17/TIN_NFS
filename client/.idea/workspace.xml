@@ -15,8 +15,6 @@
       <change afterPath="$PROJECT_DIR$/Testing/Temporary/LastTest.log" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/client" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/client.cbp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/.idea/server.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../server/CMakeFiles/3.17.5/CMakeCCompiler.cmake" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../server/CMakeFiles/3.17.5/CMakeCXXCompiler.cmake" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../server/CMakeFiles/3.17.5/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
@@ -27,27 +25,11 @@
       <change afterPath="$PROJECT_DIR$/../server/CMakeFiles/clion-environment.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../server/Testing/Temporary/LastTest.log" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../server/server.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures/client_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures/client_msg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures/codes.h" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures/codes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures/server_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures/server_msg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/open/open.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/file/open/open.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileOperations.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/fileOperations.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fileOperations.h" beforeDir="false" afterPath="$PROJECT_DIR$/fileOperations.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/send_message/send_message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/send_message/send_message.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../server/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/data_structures/client_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../server/data_structures/client_msg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/data_structures/codes.h" beforeDir="false" afterPath="$PROJECT_DIR$/../server/data_structures/codes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/data_structures/server_msg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../server/data_structures/server_msg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../server/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,11 +74,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -113,6 +90,7 @@
       <workItem from="1609268499484" duration="7215000" />
       <workItem from="1609931829725" duration="10856000" />
       <workItem from="1609944550093" duration="2525000" />
+      <workItem from="1609947909294" duration="3238000" />
     </task>
     <task id="LOCAL-00001" summary="wysyłanie auth requestu działa">
       <created>1609178432904</created>
@@ -170,13 +148,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/fileOperations.cpp</url>
-          <line>42</line>
+          <line>38</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/fileOperations.cpp</url>
-          <line>30</line>
-          <option name="timeStamp" value="17" />
+          <line>37</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

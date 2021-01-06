@@ -1,7 +1,6 @@
 #include "fileOperations.h"
 
-int mynfs_read(int fd, void *buf, int count)
-{
+int mynfs_read(int fd, void *buf, int count) {
     client_msg clientMsg;
     server_msg *serverMsg;
 
@@ -19,8 +18,7 @@ int mynfs_read(int fd, void *buf, int count)
     return len;
 }
 
-int mynfs_write(int fd, const void *buf, int count)
-{
+int mynfs_write(int fd, const void *buf, int count) {
     client_msg clientMsg;
     server_msg *serverMsg;
 
@@ -56,8 +54,7 @@ int mynfs_lseek(int fd, int offset, int whence) {
     return len;
 }
 
-int mynfs_close(int fd)
-{
+int mynfs_close(int fd) {
     client_msg clientMsg;
     server_msg *serverMsg;
 
@@ -70,13 +67,9 @@ int mynfs_close(int fd)
     std::cout << "RECEIVED mynfs_close RESPONSE status: " << status << std::endl;
 
     return status;
-
-
-
 }
 
-int mynfs_unlink(char *host, char *path)
-{
+int mynfs_unlink(char *host, char *path) {
     client_msg clientMsg;
     server_msg *serverMsg;
 
@@ -89,13 +82,9 @@ int mynfs_unlink(char *host, char *path)
     std::cout << "RECEIVED mynfs_unlink RESPONSE status: " << status << std::endl;
 
     return status;
-
-
-
 }
 
-int mynfs_fstat(int mynfs_fd,struct stat *statbuf)
-{
+int mynfs_fstat(int mynfs_fd,struct stat *statbuf) {
     client_msg clientMsg{};
     server_msg *serverMsg;
 

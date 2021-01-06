@@ -18,6 +18,8 @@ void run_server(int);
 
 void getClientMsgFromSocketAndSendResponse(int new_socket);
 
+
+
 int main(int argc, char *argv[]){
     if(argc != 2) {
       perror("Wrong operationsSerwer argumenst number!");
@@ -104,8 +106,14 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
         case OPEN_FILE_REQUEST:
             handleOpenFileRequest(clientMsg, &response);
             break;
+        case OPEN_DIR_REQUEST:
+            handleOpenDirRequest(clientMsg, &response);
+            break;
         case READ_FILE_REQUEST:
             handleReadFileRequest(clientMsg,&response);
+            break;
+        case READ_DIR_REQUEST:
+            handleReadDirRequest(clientMsg,&response);
             break;
         case WRITE_FILE_REQUEST:
             handleWriteFileRequest(clientMsg,&response);
@@ -115,6 +123,9 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
             break;
         case CLOSE_FILE_REQUEST:
             handleCloseFileRequest(clientMsg,&response);
+            break;
+        case CLOSE_DIR_REQUEST:
+            handleCloseDirRequest(clientMsg,&response);
             break;
         case UNLINK_FILE_REQUEST:
             handleUnlinkFileRequest(clientMsg,&response);

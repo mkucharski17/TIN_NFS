@@ -30,10 +30,11 @@
 /// O_RDONLY, O_WRONLY, O_RDWR, O_CREAT
 
 int mynfs_read(int fd, void *buf, int count);
-
+char* mynfs_readdir(int dir_fd);
 int mynfs_write(int fd, const void *buf, int count);
 int mynfs_lseek(int fd, int offset, int whence);
 int mynfs_close(int fd);
+int mynfs_closedir(int dirfd);
 int mynfs_unlink(char *host, char *path);
 
 ///pobiera atrybuty otwartego pliku - analogicznie do funkcji systemowej fstat();

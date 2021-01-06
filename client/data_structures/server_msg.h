@@ -44,7 +44,7 @@ struct server_opendir {
 };
 
 struct server_closedir {
-
+    unsigned int status;
 };
 
 struct server_readdir {

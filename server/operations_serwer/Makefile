@@ -1,5 +1,5 @@
-OBJS	= main.o request_handlers.o
-SOURCE	= main.cpp request_handlers/request_handlers.cpp
+OBJS	= main.o request_handlers.o Storage.o
+SOURCE	= main.cpp request_handlers/request_handlers.cpp storage/Storage.h storage/Storage.cpp
 HEADER	= ../data_structures/client_msg.h ../data_structures/server_msg.h ../data_structures/codes.h request_handlers/request_handlers.h
 OUT	= ../operationsSerwer
 CC	 = g++
@@ -14,6 +14,9 @@ main.o: main.cpp
 
 request_handlers.o: request_handlers/request_handlers.cpp
 		$(CC) $(FLAGS) request_handlers/request_handlers.cpp -std=c++11
+
+Storage.o: storage/Storage.cpp
+	$(CC) $(FLAGS) storage/Storage.h storage/Storage.cpp -std=c++11
 
 clean:
 	rm -f $(OBJS) $(OUT)

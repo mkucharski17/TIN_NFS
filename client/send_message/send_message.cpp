@@ -27,10 +27,10 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input, 
     }
 
     send(socketFd, input, sizeof(client_msg), 0);
-    char response[sizeof(server_msg)];
+    char response[10000]; // TODO wyciagnac 10000 do zmiennej/stalej
 
 
-    read(socketFd, response, sizeof(server_msg));
+    read(socketFd, response, 10000);
     //to jest tylko zeby zalogowac w konsoli czy dobre dane przyszły
 
     (*serverResponse) = (server_msg *) response;
@@ -44,9 +44,14 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input, 
         case OPEN_FILE_RESPONSE:
             std::cout << "file descriptor: " << (*serverResponse)->response.open.fd << std::endl;
             break;
-
+        case OPEN_DIR_RESPONSE:
+            std::cout << "dir descriptor: " << (*serverResponse)->response.opendir.dir_fd << std::endl;
+            break;
         case READ_FILE_RESPONSE:
             std::cout << "read:  " << (*serverResponse)->response.read.data << std::endl;
+            break;
+        case READ_DIR_RESPONSE:
+            std::cout << "read dir:  " << (*serverResponse)->response.readdir.name << std::endl;
             break;
         case WRITE_FILE_RESPONSE:
             std::cout << "write:  " << (*serverResponse)->response.write.size << std::endl;
@@ -56,6 +61,9 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input, 
             break;
         case CLOSE_FILE_RESPONSE:
             std::cout << "close:  " << (*serverResponse)->response.close.status << std::endl;
+            break;
+        case CLOSE_DIR_RESPONSE:
+            std::cout << "close dir:  " << (*serverResponse)->response.closedir.status << std::endl;
             break;
         case UNLINK_FILE_RESPONSE:
             std::cout << "unlink:  " << (*serverResponse)->response.unlink.status << std::endl;

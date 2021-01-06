@@ -2,7 +2,7 @@
 
 DirStorage::DirStorage() {};
 
-int DirStorage::get(int index) {
+std::pair<std::string, int> DirStorage::get(int index) {
     return pathToDesc.at(index);
 }
 
@@ -15,7 +15,10 @@ void DirStorage::remove(int index) {
 }
 
 void DirStorage::printAll() {
-    for (auto const& pathAndDesc : pathToDesc) {
-        std::cout << pathAndDesc.first << " : " << pathAndDesc.second << "\n";
+    std::vector<std::pair<std::string, int>>::size_type i;
+    for (i = 0; i != pathToDesc.size(); i++) {
+        std::string path = pathToDesc.at(i).first;
+        int desc = pathToDesc.at(i).second;
+        std::cout << i << ". " << path << " : " << desc << "\n";
     }
 }

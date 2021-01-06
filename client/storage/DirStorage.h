@@ -10,13 +10,13 @@ private:
     std::vector<std::pair<std::string, int>> pathToDesc;
     DirStorage();
 public:
-    static Storage& instance() {
-        static Storage INSTANCE;
+    static DirStorage& instance() {
+        static DirStorage INSTANCE;
         return INSTANCE;
     }
     std::pair<std::string, int> get(int index);
     void add(std::string path, int desc);
-    void remove(std::string path);
+    void remove(int index);
     void printAll();
 };
 

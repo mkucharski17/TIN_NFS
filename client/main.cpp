@@ -41,7 +41,8 @@ void openDirectory() {
     std::string path;
     std::cout << "Provide directory path:\n";
     std::cin >> path;
-    int dir_fd = mynfs_opendir(current_connection.first, path);
+    std::count << "path: " << path << "\n";
+    int dir_fd = mynfs_opendir((char*) current_connection.first, (char*) path.c_str());
     DirStorage::instance().add(path, dir_fd);
 }
 
@@ -49,19 +50,33 @@ void readDirectory() {
     int index = 0;
     std::cout << "Choose directory to read:\n";
     DirStorage::instance().printAll();
-    std::cin >> index;
-    int dir_fd = DirStorage::instance().get(index);
-    mynfs_readdir(dir_fd);
+    while (true) {
+        std::cin >> index;
+        try {
+            int dir_fd = DirStorage::instance().get(index).second;
+            mynfs_readdir(dir_fd);
+            return;
+        } catch (const std::out_of_range& e) {
+            std::cout << "Index out of range!\n";
+        }
+    }
 }
 
 void closeDirectory() {
     int index = 0;
     std::cout << "Choose directory to close:\n";
     DirStorage::instance().printAll();
-    std::cin >> index;
-    int dir_fd = DirStorage::instance().get(index).second;
-    mynfs_closedir(dir_fd);
-    DirStorage::instance().remove(index);
+    while (true) {
+        std::cin >> index;
+        try {
+            int dir_fd = DirStorage::instance().get(index).second;
+            mynfs_closedir(dir_fd);
+            DirStorage::instance().remove(index);
+            return;
+        } catch (const std::out_of_range& e) {
+            std::cout << "Index out of range!\n";
+        }
+    }
 }
 
 int printMenu() {

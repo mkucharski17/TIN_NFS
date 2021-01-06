@@ -30,7 +30,7 @@ int mynfs_opendir(char *host, char *path);
 ///Uwaga: systemowe funkcja readdir() zwraca za każdym razem strukturę dirent
 /// zawierającą rekordy opisujące kolejne pliki z katalogu, tu wystarczy,
 /// że funkcja zwróci samą nazwę.
-char *mynfs_readdir(int dirfd); int mynfs_closedir(int dirfd);
+char *mynfs_readdir(int dirfd);
 
 ///analogicznie do closedir()
 int mynfs_closedir(int dirfd);

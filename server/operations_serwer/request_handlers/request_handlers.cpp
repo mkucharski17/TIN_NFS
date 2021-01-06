@@ -155,11 +155,13 @@ void handleOpenDirRequest(client_msg *clientAuthMsg, char **response) {
     std::cout << "path : " << clientAuthMsg->arguments.opendir.path << "\n";
     auto dird = opendir(clientAuthMsg->arguments.opendir.path);
     auto *openDirResponse = (server_msg *) malloc(sizeof(server_msg));
+    int dir_fd = dirfd(dird);
+    Storage::instance().add(dir_fd, dird);
 
     openDirResponse->response_type = OPEN_DIR_RESPONSE;
     openDirResponse->response = {
             .opendir = {
-                    htonl(dirfd(dird))
+                    htonl(dir_fd)
             }
     };
     openDirResponse->error = htonl(errno);
@@ -170,14 +172,14 @@ void handleOpenDirRequest(client_msg *clientAuthMsg, char **response) {
 
 void handleReadDirRequest(client_msg *clientMsg, char **response) {
     std::cout << "read dir request" << std::endl;
-    int dir_fd = ntohl(clientMsg->arguments.readdir.dir_fd);
+    auto dir_fd = ntohl(clientMsg->arguments.readdir.dir_fd);
     auto dir = fdopendir(dir_fd);
     struct dirent *ent;
     std::string dirFileNames;
-    while((ent = readdir(dir)) != NULL) {
+    while((ent = readdir(dir)) != nullptr) {
         dirFileNames.append(ent->d_name).append("\n");
     }
-    server_msg *serverMsg = (server_msg*) malloc(sizeof(server_msg ) + dirFileNames.length());
+    server_msg *serverMsg = (server_msg*) malloc(sizeof(server_msg) + dirFileNames.length());
     strncpy(serverMsg->response.readdir.name, dirFileNames.c_str(), dirFileNames.length());
     serverMsg->error = htonl(errno);
     serverMsg->response_type = READ_DIR_RESPONSE;
@@ -201,4 +203,6 @@ void handleCloseDirRequest(client_msg *clientMsg, char **response) {
 
     std::cout << "close status: " << closeStatus << std::endl;
     *response = (char*) serverMsg;
+
+    Storage::instance().remove(dir_fd);
 }

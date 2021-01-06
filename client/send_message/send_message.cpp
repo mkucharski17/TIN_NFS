@@ -27,10 +27,10 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input, 
     }
 
     send(socketFd, input, sizeof(client_msg), 0);
-    char response[sizeof(server_msg)];
+    char response[10000]; // TODO wyciagnac 10000 do zmiennej/stalej
 
 
-    read(socketFd, response, sizeof(server_msg));
+    read(socketFd, response, 10000);
     //to jest tylko zeby zalogowac w konsoli czy dobre dane przyszły
 
     (*serverResponse) = (server_msg *) response;

@@ -1,15 +1,14 @@
 #include "directoryOperations.h"
 
-unsigned int mynfs_opendir(char *host, char *path) {
+int mynfs_opendir(char *host, char *path) {
     client_msg openRequest;
     server_msg *openResponse;
     openRequest.request_type = OPEN_DIR_REQUEST;
     strcpy((char*)openRequest.arguments.opendir.path, path);
-    // todo autoryzacja?
 
     sendMessageAndGetResponse(host, port, &openRequest, &openResponse);
 
-    return openResponse->response.opendir.dir_fd;
+    return ntohl(openResponse->response.opendir.dir_fd);
 }
 
 char* mynfs_readdir(int dir_fd) {

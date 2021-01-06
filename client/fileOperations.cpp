@@ -1,6 +1,6 @@
 #include "fileOperations.h"
 
- sendMessageAndGetResponse(current_connection.first, current_connection.second, &clientMsg, &serverMsg);
+ 
 
 int mynfs_read(int fd, void *buf, int count)
 {

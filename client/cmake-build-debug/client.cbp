@@ -8,118 +8,118 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug"/>
+				<Option working_dir="/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug"/>
+				<Option working_dir="/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug"/>
+				<Option working_dir="/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="client">
-				<Option output="/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/client" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug"/>
+				<Option output="/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/michal/Desktop/tin/TIN_NFS/client/."/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/home/stasiek/Desktop/tin_project/TIN_NFS/client/."/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 client"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 client"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="client/fast">
-				<Option output="/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/client" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug"/>
+				<Option output="/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/michal/Desktop/tin/TIN_NFS/client/."/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/home/stasiek/Desktop/tin_project/TIN_NFS/client/."/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 client/fast"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/michal/Desktop/tin/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 client/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/authorization/authorization.cpp">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/authorization/authorization.cpp">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/authorization/authorization.h">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/authorization/authorization.h">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/data_structures">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/data_structures">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/directoryOperations.h">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/directoryOperations.h">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/file/open/open.cpp">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/file/open/open.cpp">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/file/open/open.h">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/file/open/open.h">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/fileOperations.cpp">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/fileOperations.cpp">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/fileOperations.h">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/fileOperations.h">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/main.cpp">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/main.cpp">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/send_message/send_message.cpp">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/send_message/send_message.cpp">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/send_message/send_message.h">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/send_message/send_message.h">
 			<Option target="client"/>
 		</Unit>
-		<Unit filename="/home/michal/Desktop/tin/TIN_NFS/client/CMakeLists.txt">
+		<Unit filename="/home/stasiek/Desktop/tin_project/TIN_NFS/client/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

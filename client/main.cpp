@@ -1,6 +1,8 @@
 #include <data_structures/codes.h>
 #include <authorization//authorization.h>
 #include <iostream>
+#include "storage/DirStorage.h"
+#include "directoryOperations.h"
 
 #define DIFFERENT_CONNECTION -2
 #define EXIT_KEY 30
@@ -36,6 +38,48 @@ void changeConnection() {
     }
     std::cin >> connection_counter;
     changeCurrentConnection(connection_counter);
+}
+
+void openDirectory() {
+    std::string path;
+    std::cout << "Provide directory path:\n";
+    std::cin >> path;
+    std::cout << "path: " << path << "\n";
+    int dir_fd = mynfs_opendir((char*) current_connection.first, (char*) path.c_str());
+    DirStorage::instance().add(path, dir_fd);
+}
+
+void readDirectory() {
+    int index = 0;
+    std::cout << "Choose directory to read:\n";
+    DirStorage::instance().printAll();
+    while (true) {
+        std::cin >> index;
+        try {
+            int dir_fd = DirStorage::instance().get(index).second;
+            mynfs_readdir(dir_fd);
+            return;
+        } catch (const std::out_of_range& e) {
+            std::cout << "Index out of range!\n";
+        }
+    }
+}
+
+void closeDirectory() {
+    int index = 0;
+    std::cout << "Choose directory to close:\n";
+    DirStorage::instance().printAll();
+    while (true) {
+        std::cin >> index;
+        try {
+            int dir_fd = DirStorage::instance().get(index).second;
+            mynfs_closedir(dir_fd);
+            DirStorage::instance().remove(index);
+            return;
+        } catch (const std::out_of_range& e) {
+            std::cout << "Index out of range!\n";
+        }
+    }
 }
 
 int printMenu() {
@@ -87,13 +131,13 @@ void menuSwitch(int selectedOperation) {
 
             }break;
             case OPEN_DIR_REQUEST: {
-
+                openDirectory();
             }break;
             case READ_DIR_REQUEST: {
-
+                readDirectory();
             }break;
             case CLOSE_DIR_REQUEST: {
-
+                closeDirectory();
             }break;
             case DISCONNECT_REQUEST: {
                 disconnect();

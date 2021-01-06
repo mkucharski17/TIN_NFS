@@ -68,10 +68,10 @@ RM = /snap/clion/138/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/stasiek/Desktop/tin_project/TIN_NFS/client
+CMAKE_SOURCE_DIR = /home/stasiek/Desktop/tin_proj/TIN_NFS/client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug
+CMAKE_BINARY_DIR = /home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles /home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles /home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -169,6 +169,33 @@ authorization/authorization.s: authorization/authorization.cpp.s
 authorization/authorization.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/authorization/authorization.cpp.s
 .PHONY : authorization/authorization.cpp.s
+
+directoryOperations.o: directoryOperations.cpp.o
+
+.PHONY : directoryOperations.o
+
+# target to build an object file
+directoryOperations.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/directoryOperations.cpp.o
+.PHONY : directoryOperations.cpp.o
+
+directoryOperations.i: directoryOperations.cpp.i
+
+.PHONY : directoryOperations.i
+
+# target to preprocess a source file
+directoryOperations.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/directoryOperations.cpp.i
+.PHONY : directoryOperations.cpp.i
+
+directoryOperations.s: directoryOperations.cpp.s
+
+.PHONY : directoryOperations.s
+
+# target to generate assembly for a file
+directoryOperations.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/directoryOperations.cpp.s
+.PHONY : directoryOperations.cpp.s
 
 file/open/open.o: file/open/open.cpp.o
 
@@ -290,6 +317,9 @@ help:
 	@echo "... authorization/authorization.o"
 	@echo "... authorization/authorization.i"
 	@echo "... authorization/authorization.s"
+	@echo "... directoryOperations.o"
+	@echo "... directoryOperations.i"
+	@echo "... directoryOperations.s"
 	@echo "... file/open/open.o"
 	@echo "... file/open/open.i"
 	@echo "... file/open/open.s"

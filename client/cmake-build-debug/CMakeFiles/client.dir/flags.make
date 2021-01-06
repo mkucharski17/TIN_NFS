@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/stasiek/Desktop/tin_project/TIN_NFS/client/. 
+CXX_INCLUDES = -I/home/stasiek/Desktop/tin_proj/TIN_NFS/client/. 
 

@@ -8,7 +8,7 @@ int mynfs_read(int fd, void *buf, int count) {
     clientMsg.arguments.read.fd = htonl(fd);
     clientMsg.arguments.read.read_size = htonl(count);
 
-    sendMessageAndGetResponse(host_name, port, &clientMsg, &serverMsg);
+    sendMessageAndGetResponse(current_connection.first, current_connection.second, &clientMsg, &serverMsg);
 
     int len = ntohl(serverMsg->response.read.size);
     std::cout << "RECEIVED mynfs_read RESPONSE size: " << len << std::endl;
@@ -28,7 +28,7 @@ int mynfs_write(int fd, const void *buf, int count) {
     std::memcpy(const_cast<void *>(buf), clientMsg.arguments.write.data, count);
 
 
-    sendMessageAndGetResponse(host_name, port, &clientMsg, &serverMsg);
+    sendMessageAndGetResponse(current_connection.first, current_connection.second, &clientMsg, &serverMsg);
 
     int len = ntohl(serverMsg->response.write.size);
     std::cout << "RECEIVED mynfs_write RESPONSE size: " << len << std::endl;
@@ -46,7 +46,7 @@ int mynfs_lseek(int fd, int offset, int whence) {
     clientMsg.arguments.lseek.offset = htonl(offset);
     clientMsg.arguments.lseek.whence = htonl(whence);
 
-    sendMessageAndGetResponse(host_name, port, &clientMsg, &serverMsg);
+    sendMessageAndGetResponse(current_connection.first, current_connection.second, &clientMsg, &serverMsg);
 
     int len = ntohl(serverMsg->response.lseek.offset);
     std::cout << "RECEIVED mynfs_lseek RESPONSE offset: " << len << std::endl;
@@ -61,7 +61,7 @@ int mynfs_close(int fd) {
     clientMsg.request_type =  CLOSE_FILE_REQUEST;
     clientMsg.arguments.close.fd = htonl(fd);
 
-    sendMessageAndGetResponse(host_name, port, &clientMsg, &serverMsg);
+    sendMessageAndGetResponse(current_connection.first, current_connection.second, &clientMsg, &serverMsg);
 
     int status = ntohl(serverMsg->response.close.status);
     std::cout << "RECEIVED mynfs_close RESPONSE status: " << status << std::endl;
@@ -76,7 +76,7 @@ int mynfs_unlink(char *host, char *path) {
     clientMsg.request_type =  UNLINK_FILE_REQUEST;
     strcpy((char*)clientMsg.arguments.unlink.path,path);
 
-    sendMessageAndGetResponse(host_name, port, &clientMsg, &serverMsg);
+    sendMessageAndGetResponse(current_connection.first, current_connection.second, &clientMsg, &serverMsg);
 
     int status = ntohl(serverMsg->response.unlink.status);
     std::cout << "RECEIVED mynfs_unlink RESPONSE status: " << status << std::endl;
@@ -91,7 +91,7 @@ int mynfs_fstat(int mynfs_fd,struct stat *statbuf) {
     clientMsg.request_type =  FSTAT_FILE_REQUEST;
     clientMsg.arguments.close.fd = htonl(mynfs_fd);
 
-    sendMessageAndGetResponse(host_name, port, &clientMsg, &serverMsg);
+    sendMessageAndGetResponse(current_connection.first, current_connection.second, &clientMsg, &serverMsg);
 
     int status = ntohl(serverMsg->response.fstat.status);
 

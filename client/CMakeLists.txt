@@ -8,6 +8,7 @@ include_directories(.)
 add_executable(client
         data_structures
         directoryOperations.h
+        directoryOperations.cpp
         fileOperations.cpp
         fileOperations.h
         main.cpp file/open/open.cpp file/open/open.h authorization/authorization.cpp authorization/authorization.h send_message/send_message.cpp send_message/send_message.h)

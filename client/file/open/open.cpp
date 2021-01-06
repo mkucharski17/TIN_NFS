@@ -15,7 +15,7 @@ unsigned int mynfs_open (char *host, char *path, int oflag, int mode) {
     strcpy((char*)openRequest.arguments.open.path, path);
     openRequest.arguments.open.oflag = oflag;
     openRequest.arguments.open.mode = mode;
-    sendMessageAndGetResponse(host_name, port, &openRequest, &openResponse);
+    sendMessageAndGetResponse(current_connection.first, current_connection.second, &openRequest, &openResponse);
 
     return openResponse->response.open.fd;
 }

@@ -6,25 +6,35 @@
 
 #IncludeRegexTransform: 
 
-../authorization/authorization.h
-data_structures/client_msg.h
--
-cstring
--
-data_structures/codes.h
--
-
 ../data_structures/client_msg.h
 
 ../data_structures/codes.h
 
-../file/open/open.h
+../data_structures/server_msg.h
+sys/stat.h
+-
 
-/home/stasiek/Desktop/tin_project/TIN_NFS/client/main.cpp
+/home/stasiek/Desktop/tin_project/TIN_NFS/client/send_message/send_message.cpp
+send_message.h
+/home/stasiek/Desktop/tin_project/TIN_NFS/client/send_message/send_message.h
+
+/home/stasiek/Desktop/tin_project/TIN_NFS/client/send_message/send_message.h
+sys/socket.h
+-
+netinet/in.h
+-
+cstring
+-
+arpa/inet.h
+-
+iostream
+-
 data_structures/codes.h
 -
-file/open/open.h
+data_structures/client_msg.h
 -
-authorization/authorization.h
+data_structures/server_msg.h
+-
+unistd.h
 -
 

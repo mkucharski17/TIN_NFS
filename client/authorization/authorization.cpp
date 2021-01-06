@@ -1,13 +1,10 @@
-//
-
-#include <data_structures/server_msg.h>
-#include <send_message/send_message.h>
 #include "authorization.h"
 
+unsigned int port;
+char * host_name;
+
 unsigned int sendConnectRequest(char *host, char *login, char *password) {
-
     server_msg *serverResponse;
-
 
     client_msg input{
             .request_type = CONNECTION_REQUEST,
@@ -16,5 +13,16 @@ unsigned int sendConnectRequest(char *host, char *login, char *password) {
     strcpy((char *) input.arguments.connection.password, password);
     sendMessageAndGetResponse(host, 8080, &input, &serverResponse);
 
+    host_name = host;
+    port = serverResponse->response.connection.new_server_port;
+
     return serverResponse->response.connection.new_server_port;
+}
+
+void sendDisconnectRequest() {
+    server_msg *serverResponse;
+    client_msg input{
+            .request_type = DISCONNECT_REQUEST,
+    };
+    sendMessageAndGetResponse(host_name, port, &input, &serverResponse);
 }

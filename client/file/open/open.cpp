@@ -8,16 +8,14 @@
 #include "open.h"
 
 unsigned int mynfs_open (char *host, char *path, int oflag, int mode) {
+
     client_msg openRequest;
     server_msg *openResponse;
     openRequest.request_type = OPEN_FILE_REQUEST;
     strcpy((char*)openRequest.arguments.open.path, path);
     openRequest.arguments.open.oflag = oflag;
     openRequest.arguments.open.mode = mode;
-    //todo czy tutaj nie przydałaby się autoryzacja?
-
-    //todo trzebaby jakoś port tu przekazać. Może globalny zrobić ?
-    sendMessageAndGetResponse(host, 8080, &openRequest, &openResponse);
+    sendMessageAndGetResponse(host_name, port, &openRequest, &openResponse);
 
     return openResponse->response.open.fd;
 }

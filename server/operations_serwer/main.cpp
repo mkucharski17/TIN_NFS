@@ -8,13 +8,13 @@
 #include <errno.h>
 #include <arpa/inet.h>
 #include <iostream>
-#include <cstring>
 #include <limits.h>
 #include <dirent.h>
 #include "Storage.h"
 #include "../data_structures/client_msg.h"
 #include "../data_structures/codes.h"
 #include "../data_structures/server_msg.h"
+#include "request_handlers/request_handlers.h"
 
 void run_server(int);
 
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
       exit(EXIT_FAILURE);
     }
 
-    //converting argv[1] to portNumber
+    //casting argv[1] to int
     char* p;
     errno = 0;
     long arg = strtol(argv[1], &p, 10);
@@ -64,7 +64,6 @@ int main(int argc, char *argv[]){
 }
 
 void run_server(int portNumber) {
-  /*
     int server_fd, new_socket;
     struct sockaddr_in address;
     int opt = 1;
@@ -107,12 +106,7 @@ void run_server(int portNumber) {
             exit(EXIT_FAILURE);
         }
         getClientMsgFromSocketAndSendResponse(new_socket);
-    }*/
-    std::cout<<"weszlo do nowego serwera "<<portNumber<<"\n";
-
-
-              int x;
-          std::cin>>x;
+    }
 }
 
 void getClientMsgFromSocketAndSendResponse(int new_socket) {
@@ -128,7 +122,6 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
     auto clientMsg = (client_msg *) buf;
     std::cout << "received bytes : " << bytes << std::endl;
     std::cout << "request type : " << clientMsg->request_type << std::endl;
-    //todo tutaj trzeba bedzie zrobić switcha na rozne typy requestow
     switch (clientMsg->request_type) {
         case OPEN_FILE_REQUEST:
             handleOpenFileRequest(clientMsg, &response);
@@ -160,6 +153,11 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
         case FSTAT_FILE_REQUEST:
             handleFstatFileRequest(clientMsg,&response);
             break;
+        case DISCONNECT_REQUEST: {
+            handleDisconnectRequest(clientMsg,&response);
+            send(new_socket, response, sizeof(server_msg), 0);
+            exit(0);
+        }break;
         default:
             perror("unknown request type");
             exit(EXIT_FAILURE);

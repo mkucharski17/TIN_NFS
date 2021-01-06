@@ -12,14 +12,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c115b6aa-26f7-4991-9f15-18b9cc24d2c6" name="Default Changelist" comment="klient działa w pętli">
+      <change afterPath="$PROJECT_DIR$/../server/authSerwer" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/operationsSerwer" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/client.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/client.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/client" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/client" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authorization/authorization.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/authorization/authorization.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authorization/authorization.h" beforeDir="false" afterPath="$PROJECT_DIR$/authorization/authorization.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/auth_serwer/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../server/auth_serwer/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/operations_serwer/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../server/operations_serwer/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/data_structures/codes.h" beforeDir="false" afterPath="$PROJECT_DIR$/../server/data_structures/codes.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/operations_serwer/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../server/operations_serwer/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/operations_serwer/request_handlers/request_handlers.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../server/operations_serwer/request_handlers/request_handlers.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/operations_serwer/request_handlers/request_handlers.h" beforeDir="false" afterPath="$PROJECT_DIR$/../server/operations_serwer/request_handlers/request_handlers.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +93,7 @@
       <workItem from="1609268499484" duration="7215000" />
       <workItem from="1609873759334" duration="3770000" />
       <workItem from="1609880585339" duration="11273000" />
-      <workItem from="1609929439095" duration="1361000" />
+      <workItem from="1609929439095" duration="2267000" />
     </task>
     <task id="LOCAL-00001" summary="wysyłanie auth requestu działa">
       <created>1609178432904</created>

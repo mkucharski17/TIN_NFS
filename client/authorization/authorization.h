@@ -15,4 +15,6 @@ extern char * host_name;
 
 unsigned int sendConnectRequest(char *host,char *login, char *password);
 
+void sendDisconnectRequest();
+
 #endif //CLIENT_AUTHORIZATION_H

@@ -30,4 +30,6 @@ void handleUnlinkFileRequest(client_msg *clientMsg, char **response);
 
 void handleFstatFileRequest(client_msg *clientMsg, char **response);
 
+void handleDisconnectRequest(client_msg *clientMsg, char **response);
+
 #endif

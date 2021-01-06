@@ -18,3 +18,11 @@ unsigned int sendConnectRequest(char *host, char *login, char *password) {
 
     return serverResponse->response.connection.new_server_port;
 }
+
+void sendDisconnectRequest() {
+    server_msg *serverResponse;
+    client_msg input{
+            .request_type = DISCONNECT_REQUEST,
+    };
+    sendMessageAndGetResponse(host_name, port, &input, &serverResponse);
+}

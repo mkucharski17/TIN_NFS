@@ -122,6 +122,11 @@ void getClientMsgFromSocketAndSendResponse(int new_socket) {
         case FSTAT_FILE_REQUEST:
             handleFstatFileRequest(clientMsg,&response);
             break;
+        case DISCONNECT_REQUEST: {
+            handleDisconnectRequest(clientMsg,&response);
+            send(new_socket, response, sizeof(server_msg), 0);
+            exit(0);
+        }break;
         default:
             perror("unknown request type");
             exit(EXIT_FAILURE);

@@ -140,3 +140,13 @@ void handleFstatFileRequest(client_msg *clientMsg, char **response)
     std::cout<<"fstat status:"<<status <<  std::endl;
     *response = (char*)serverMsg;
 }
+
+void handleDisconnectRequest(client_msg *clientMsg, char **response)
+{
+    std::cout<<"disconnect request"<<std::endl;
+
+    auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
+
+    serverMsg->response_type = DISCONNECT_REQUEST;
+    *response = (char*)serverMsg;
+}

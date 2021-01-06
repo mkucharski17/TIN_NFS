@@ -6,18 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../authorization/authorization.h
-data_structures/client_msg.h
--
-cstring
--
-data_structures/codes.h
--
-data_structures/server_msg.h
--
-send_message/send_message.h
--
-
 ../data_structures/client_msg.h
 
 ../data_structures/codes.h
@@ -26,7 +14,11 @@ send_message/send_message.h
 sys/stat.h
 -
 
-../send_message/send_message.h
+/home/stasiek/Desktop/tin_project/TIN_NFS/client/send_message/send_message.cpp
+send_message.h
+/home/stasiek/Desktop/tin_project/TIN_NFS/client/send_message/send_message.h
+
+/home/stasiek/Desktop/tin_project/TIN_NFS/client/send_message/send_message.h
 sys/socket.h
 -
 netinet/in.h
@@ -44,13 +36,5 @@ data_structures/client_msg.h
 data_structures/server_msg.h
 -
 unistd.h
--
-
-/home/stasiek/Desktop/tin_project/TIN_NFS/client/main.cpp
-data_structures/codes.h
--
-authorization/authorization.h
--
-iostream
 -
 

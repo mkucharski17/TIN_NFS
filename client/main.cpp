@@ -8,6 +8,11 @@ void createConnection() {
     sendConnectRequest((char *) "127.0.0.1", (char *) "login", (char *) "haslologinu");
     connected = true;
 }
+
+void disconnect() {
+    sendDisconnectRequest();
+    connected = false;
+}
 int printMenu() {
     std::cout << "*******************************************\n";
     std::cout << "Choose operation::\n" << "1. open\n" << "2. read\n" <<
@@ -52,8 +57,7 @@ void menuSwitch(int selectedOperation) {
 
         }break;
         case DISCONNECT_REQUEST: {
-
-            connected = false;
+            disconnect();
         }break;
         default:{
             perror("menuSwitch default value");

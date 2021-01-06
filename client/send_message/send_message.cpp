@@ -63,7 +63,9 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input, 
         case FSTAT_FILE_RESPONSE:
             std::cout << "fstat:  " << (*serverResponse)->response.fstat.status << std::endl;
             break;
-
+        case DISCONNECT_REQUEST:
+            std::cout << "Disconnect" << std::endl;
+            break;
         default:
             std::cout << "unknown response type" << std::endl;
             return ERROR;

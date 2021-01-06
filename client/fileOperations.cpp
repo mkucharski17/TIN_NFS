@@ -18,20 +18,6 @@ int mynfs_read(int fd, void *buf, int count) {
     return len;
 }
 
-char* mynfs_readdir(int dir_fd) {
-    client_msg clientMsg;
-    server_msg *serverMsg;
-
-    clientMsg.request_type = READ_DIR_REQUEST;
-    clientMsg.arguments.read.fd = htonl(dir_fd);
-
-    sendMessageAndGetResponse(host, 8080, &clientMsg, &serverMsg);
-
-    std::cout << "RECEIVED mynfs_readdir RESPONSE: " << serverMsg->response.readdir.data << std::endl;
-
-    return serverMsg->response.readdir.data;
-}
-
 int mynfs_write(int fd, const void *buf, int count) {
     client_msg clientMsg;
     server_msg *serverMsg;
@@ -79,21 +65,6 @@ int mynfs_close(int fd) {
 
     int status = ntohl(serverMsg->response.close.status);
     std::cout << "RECEIVED mynfs_close RESPONSE status: " << status << std::endl;
-
-    return status;
-}
-
-int mynfs_closedir(int dirfd) {
-    client_msg clientMsg;
-    server_msg *serverMsg;
-
-    clientMsg.request_type =  CLOSE_DIR_REQUEST;
-    clientMsg.arguments.close.fd = htonl(dirfd);
-
-    sendMessageAndGetResponse(host, 8080, &clientMsg, &serverMsg);
-
-    int status = ntohl(serverMsg->response.closedir.status);
-    std::cout << "RECEIVED mynfs_closedir RESPONSE status: " << status << std::endl;
 
     return status;
 }

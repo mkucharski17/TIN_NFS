@@ -17,8 +17,6 @@ void DirStorage::remove(int index) {
 void DirStorage::printAll() {
     std::vector<std::pair<std::string, int>>::size_type i;
     for (i = 0; i != pathToDesc.size(); i++) {
-        std::string path = pathToDesc.at(i).first;
-        int desc = pathToDesc.at(i).second;
-        std::cout << i << ". " << path << " : " << desc << "\n";
+        std::cout << i << ". " << pathToDesc.at(i).first  << "\n";
     }
 }

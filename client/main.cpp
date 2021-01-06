@@ -52,11 +52,11 @@ void menuSwitch(int selectedOperation) {
 
         }break;
         case DISCONNECT_REQUEST: {
-            //todo: rozlaczyc sie
+
             connected = false;
         }break;
         default:{
-            perror("mwnuSwitch default value");
+            perror("menuSwitch default value");
         }break;
     }
 }

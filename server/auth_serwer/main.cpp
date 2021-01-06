@@ -19,13 +19,13 @@ void run_authorization_server(int);
 
 void getClientAuthorizationMsg(int new_secket);
 
-int handleConnectionRequest(client_msg *clientAuthMsg, char **response);
+unsigned int handleConnectionRequest(client_msg *clientAuthMsg, char **response);
 
 bool areAuthorizationDataValid(client_msg *clientAuthMsg);
 
 void getNextLoginAndPassword(char* output_login, char* output_password, std::fstream* data_file);
 
-int findNewSerwerPort();
+unsigned int findNewSerwerPort();
 
 int main() {
     run_authorization_server(8080);
@@ -88,7 +88,6 @@ void getClientAuthorizationMsg(int new_socket) {
     auto clientMsg = (client_msg *) buf;
     std::cout << "received bytes : " << bytes << std::endl;
     std::cout << "request type : " << clientMsg->request_type << std::endl;
-    //todo tutaj trzeba bedzie zrobić switcha na rozne typy requestow
 
     if(clientMsg->request_type != CONNECTION_REQUEST) {
       perror("Wrong request type for authorization serwer!");
@@ -97,9 +96,9 @@ void getClientAuthorizationMsg(int new_socket) {
 
     int new_server_port=0;
     if((new_server_port = handleConnectionRequest(clientMsg, &response)) != 0) {
+      std::string command = "gnome-terminal -e 'sh -c \"./operationsSerwer ";
       command += std::to_string(new_server_port);
       command += "\"'";
-      std::cout<<command<<"\n";
       system(command.c_str());
 
       send(new_socket, response, sizeof(server_msg), 0);
@@ -112,14 +111,11 @@ void getClientAuthorizationMsg(int new_socket) {
 
 
 unsigned int handleConnectionRequest(client_msg *clientAuthMsg, char **response) {
-    std::cout << "login : " << clientAuthMsg->arguments.connection.login << "\n";
-    std::cout << "password : " << clientAuthMsg->arguments.connection.password << "\n";
     auto *response_auth = (server_msg *) malloc(sizeof(server_msg));
 
-    int new_server_port;
-
     if (areAuthorizationDataValid(clientAuthMsg)) {
-        new_server_port = findNewSerwerPort();
+        std::cout << "Correct authorization with account: " << clientAuthMsg->arguments.connection.login << "\n";
+        int new_server_port = findNewSerwerPort();
         response_auth->response_type = CONNECTION_RESPONSE;
         response_auth->response = {
                 .connection = {
@@ -149,7 +145,7 @@ bool areAuthorizationDataValid(client_msg *clientAuthMsg) {
                 }
         }
         auth_data_file.close();
-        //didn't find right login and password in while loop
+        //didn't find right login and password in auth_data.txt
         return false;
     }else{
         perror("Can not open auth_data file!");

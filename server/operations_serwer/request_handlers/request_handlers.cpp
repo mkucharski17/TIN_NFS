@@ -159,10 +159,8 @@ void handleOpenDirRequest(client_msg *clientAuthMsg, char **response) {
     Storage::instance().add(dir_fd, dird);
 
     openDirResponse->response_type = OPEN_DIR_RESPONSE;
-    openDirResponse->response = {
-            .opendir = {
+    openDirResponse->response.opendir = {
                     htonl(dir_fd)
-            }
     };
     openDirResponse->error = htonl(errno);
 

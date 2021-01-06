@@ -4,11 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/stasiek/Desktop/tin_project/TIN_NFS/client/authorization/authorization.cpp" "/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/authorization/authorization.cpp.o"
-  "/home/stasiek/Desktop/tin_project/TIN_NFS/client/file/open/open.cpp" "/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/file/open/open.cpp.o"
-  "/home/stasiek/Desktop/tin_project/TIN_NFS/client/fileOperations.cpp" "/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/fileOperations.cpp.o"
-  "/home/stasiek/Desktop/tin_project/TIN_NFS/client/main.cpp" "/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/main.cpp.o"
-  "/home/stasiek/Desktop/tin_project/TIN_NFS/client/send_message/send_message.cpp" "/home/stasiek/Desktop/tin_project/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/send_message/send_message.cpp.o"
+  "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/authorization/authorization.cpp" "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/authorization/authorization.cpp.o"
+  "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/directoryOperations.cpp" "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/directoryOperations.cpp.o"
+  "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/file/open/open.cpp" "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/file/open/open.cpp.o"
+  "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/fileOperations.cpp" "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/fileOperations.cpp.o"
+  "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/main.cpp" "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/main.cpp.o"
+  "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/send_message/send_message.cpp" "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/send_message/send_message.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

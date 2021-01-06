@@ -8,6 +8,14 @@ CMakeFiles/client.dir/authorization/authorization.cpp.o: ../send_message/send_me
 CMakeFiles/client.dir/authorization/authorization.cpp.o: ../authorization/authorization.cpp
 CMakeFiles/client.dir/authorization/authorization.cpp.o: ../authorization/authorization.h
 
+CMakeFiles/client.dir/directoryOperations.cpp.o: ../authorization/authorization.h
+CMakeFiles/client.dir/directoryOperations.cpp.o: ../data_structures/client_msg.h
+CMakeFiles/client.dir/directoryOperations.cpp.o: ../data_structures/codes.h
+CMakeFiles/client.dir/directoryOperations.cpp.o: ../data_structures/server_msg.h
+CMakeFiles/client.dir/directoryOperations.cpp.o: ../directoryOperations.cpp
+CMakeFiles/client.dir/directoryOperations.cpp.o: ../directoryOperations.h
+CMakeFiles/client.dir/directoryOperations.cpp.o: ../send_message/send_message.h
+
 CMakeFiles/client.dir/file/open/open.cpp.o: ../data_structures/client_msg.h
 CMakeFiles/client.dir/file/open/open.cpp.o: ../data_structures/codes.h
 CMakeFiles/client.dir/file/open/open.cpp.o: ../data_structures/server_msg.h

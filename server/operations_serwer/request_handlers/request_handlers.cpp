@@ -5,7 +5,10 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
     std::cout << "path : " << clientAuthMsg->arguments.open.path << "\n";
     std::cout << "oflag : " << clientAuthMsg->arguments.open.oflag << "\n";
     std::cout << "mode : " << clientAuthMsg->arguments.open.mode << "\n";
-    int32_t fd = open((char*)clientAuthMsg->arguments.open.path, clientAuthMsg->arguments.open.oflag , clientAuthMsg->arguments.open.mode);
+    int32_t fd;
+    fd = open((char *) clientAuthMsg->arguments.open.path, (int)clientAuthMsg->arguments.open.oflag,
+              clientAuthMsg->arguments.open.mode);    
+    
     auto *openFileResponse = (server_msg *) malloc(sizeof(server_msg));
 
 
@@ -59,6 +62,24 @@ void handleWriteFileRequest(client_msg *clientMsg, char **response) {
 
 
     std::cout<<"write: "<<buffer<<"size: "<<serverMsg->response.write.size<<  std::endl;
+    *response = (char*)serverMsg;
+}
+
+void handleLSeekFileRequest(client_msg *clientMsg, char **response)
+{
+    std::cout<<"lseek file request"<<std::endl;
+    int fd = ntohl( clientMsg->arguments.lseek.fd);
+    off_t offset  = ntohl(clientMsg->arguments.lseek.offset);
+    int whence  = ntohl(clientMsg->arguments.lseek.whence);
+
+    off_t lseekOffset =  lseek( fd,  offset,  whence);
+    auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
+
+    serverMsg->response.lseek.offset =htonl(lseekOffset);
+    serverMsg->error = htonl(errno);
+    serverMsg->response_type = LSEEK_FILE_RESPONSE;
+
+    std::cout<<"lseek offset:"<<serverMsg->response.lseek.offset<<  std::endl;
     *response = (char*)serverMsg;
 }
 void handleCloseFileRequest(client_msg *clientMsg, char **response)

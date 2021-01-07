@@ -31,10 +31,11 @@ SCENARIO("handleOpenFileRequest test", "[OpenFile]" ) {
 SCENARIO("handleReadFileRequest test", "[ReadFile]" ) {
     GIVEN("File descriptor and read size") {
         int fd = open("test_dir/test_file.txt", O_RDONLY, 0);
+        int id = Storage::instance().addFD(fd);
         client_msg clientAuthMsg {
             .request_type = READ_FILE_REQUEST,
             .arguments {
-                .read { htonl(fd), htonl(10) }
+                .read { htonl(id), htonl(10) }
             }
         };
         char *response;
@@ -55,10 +56,11 @@ SCENARIO("handleReadFileRequest test", "[ReadFile]" ) {
 SCENARIO("handleWriteFileRequest test", "[WriteFile]" ) {
     GIVEN("File descriptor, write size and data") {
         int fd = open("test_dir/test_file.txt", O_WRONLY, 0);
+        int id = Storage::instance().addFD(fd);
         client_msg clientAuthMsg {
             .request_type = WRITE_FILE_REQUEST,
             .arguments {
-                .write { htonl(fd), htonl(10), (char*) "write test" }
+                .write { htonl(id), htonl(10), (char*) "write test" }
             }
         };
         char *response;
@@ -79,10 +81,11 @@ SCENARIO("handleWriteFileRequest test", "[WriteFile]" ) {
 SCENARIO("handleLSeekFileRequest test", "[LSeekFile]" ) {
     GIVEN("File descriptor, offset and whence") {
         int fd = open("test_dir/test_file.txt", O_RDWR, 0);
+        int id = Storage::instance().addFD(fd);
         client_msg clientAuthMsg {
             .request_type = LSEEK_FILE_REQUEST,
             .arguments {
-                .lseek { htonl(fd), htonl(1), htonl(0) }
+                .lseek { htonl(id), htonl(1), htonl(0) }
             }
         };
         char *response;
@@ -103,10 +106,11 @@ SCENARIO("handleLSeekFileRequest test", "[LSeekFile]" ) {
 SCENARIO("handleCloseFileRequest test", "[CloseFile]" ) {
     GIVEN("File descriptor") {
         int fd = open("test_dir/test_file.txt", O_RDONLY, 0);
+        int id = Storage::instance().addFD(fd);
         client_msg clientAuthMsg {
             .request_type = CLOSE_FILE_REQUEST,
             .arguments {
-                .close { htonl(fd) }
+                .close { htonl(id) }
             }
         };
         char *response;
@@ -154,10 +158,11 @@ SCENARIO("handleUnlinkFileRequest test", "[UnlinkFile]" ) {
 SCENARIO("handleFstatFileRequest test", "[FstatFile]" ) {
     GIVEN("File descriptor") {
         int fd = open("test_dir/test_file.txt", O_RDONLY, 0);
+        int id = Storage::instance().addFD(fd);
         client_msg clientAuthMsg {
             .request_type = UNLINK_FILE_REQUEST,
             .arguments {
-                .fstat { htonl(fd) }
+                .fstat { htonl(id) }
             }
         };
         char *response;

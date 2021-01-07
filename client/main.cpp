@@ -28,6 +28,11 @@ void disconnect() {
     sendDisconnectRequest();
 }
 
+void disconnect_all() {
+    while(!connections.empty())
+        disconnect();
+}
+
 void changeConnection() {
     std::cout << "Choose connection:\n";
     int connection_counter = 0;
@@ -149,7 +154,7 @@ void menuSwitch(int selectedOperation) {
                 disconnect();
             }break;
             case EXIT_KEY: {
-
+                disconnect_all();
             }break;
             default:{
                 perror("menuSwitch default value");

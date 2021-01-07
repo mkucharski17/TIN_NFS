@@ -9,6 +9,7 @@
 class DirStorage {
 private:
     std::vector<std::pair<std::string, int>> pathToDesc;
+    std::vector<std::pair<std::string, int>> files;
     DirStorage();
 public:
     static DirStorage& instance() {
@@ -19,6 +20,11 @@ public:
     void add(std::string path, int desc);
     void remove(int index);
     void printAll();
+
+    std::pair<std::string, int> getFile(int index);
+    void addFile(std::string path, int desc);
+    void removeFile(int index);
+    void printAllFiles();
 };
 
 #endif //TIN_NFS_DIRSTORAGE_H

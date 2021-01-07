@@ -37,6 +37,9 @@ int sendMessageAndGetResponse(char *serverIp, uint16_t port, client_msg *input, 
     std::cout << "response is received" << std::endl;
     std::cout << "response type : " << (*serverResponse)->response_type << std::endl;
 
+
+    //TODO sprawdzić czy errno tak się ustawia
+    errno = (*serverResponse)->error;
     switch ((*serverResponse)->response_type) {
         case CONNECTION_RESPONSE:
             std::cout << "new port: " << (*serverResponse)->response.connection.new_server_port << std::endl;

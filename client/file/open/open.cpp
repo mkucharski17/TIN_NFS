@@ -7,7 +7,7 @@
 #include <send_message/send_message.h>
 #include "open.h"
 
-unsigned int mynfs_open (char *host, char *path, int oflag, int mode) {
+unsigned int mynfs_open ( char *path, int oflag, int mode) {
 
     client_msg openRequest;
     server_msg *openResponse;

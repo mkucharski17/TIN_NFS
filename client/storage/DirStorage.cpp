@@ -20,3 +20,23 @@ void DirStorage::printAll() {
         std::cout << i << ". " << pathToDesc.at(i).first  << "\n";
     }
 }
+
+std::pair<std::string, int> getFile(int index)
+{
+    return files.at(index);
+}
+void addFile(std::string path, int desc)
+{
+    files.push_back({path,desc});
+}
+void removeFile(int index)
+{
+    files.erase(files.begin()+index);
+}
+void printAllFiles()
+{
+     std::vector<std::pair<std::string, int>>::size_type i;
+    for (i = 0; i != files.size(); i++) {
+        std::cout << i << ". " << files.at(i).first  << "\n";
+    }
+}

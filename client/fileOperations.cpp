@@ -73,7 +73,7 @@ int mynfs_close(int fd) {
     return status;
 }
 
-int mynfs_unlink(char *host, char *path) {
+int mynfs_unlink( char *path) {
     client_msg clientMsg;
     server_msg *serverMsg;
 

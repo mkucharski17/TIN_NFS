@@ -20,7 +20,8 @@ int getFD(int fd)
 }
 int addFD(int fd)
 {
-    fileMap.insert({ lastFD, dir });
+    if(fd == -1) return -1;
+    fileMap.insert({ lastFD, fd });
     return lastFD++;
 }
     

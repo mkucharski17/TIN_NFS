@@ -97,7 +97,7 @@ int mynfs_fstat(int mynfs_fd,struct stat *statbuf) {
 
     sendMessageAndGetResponse(current_connection.first, current_connection.second, &clientMsg, &serverMsg);
 
--    *statbuf = serverMsg->response.fstat.buffer;
+    *statbuf = serverMsg->response.fstat.buffer;
     int status = ntohl(serverMsg->response.fstat.status);
 
     std::cout << "RECEIVED mynfs_fstat RESPONSE status: " << status << std::endl;

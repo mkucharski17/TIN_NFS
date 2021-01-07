@@ -9,11 +9,13 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
     fd = open((char *) clientAuthMsg->arguments.open.path, (int)clientAuthMsg->arguments.open.oflag,
               clientAuthMsg->arguments.open.mode);    
     
+    int newFD = Storage::instance().addFD(fd);
+
     auto *openFileResponse = (server_msg *) malloc(sizeof(server_msg));
 
 
     openFileResponse->response_type = OPEN_FILE_RESPONSE;
-    openFileResponse->response.open.fd = htonl(fd);
+    openFileResponse->response.open.fd = htonl(newFD);
     openFileResponse->error = htonl(errno);
 
     *response = (char *) openFileResponse;
@@ -27,6 +29,7 @@ void handleReadFileRequest(client_msg *clientMsg, char **response) {
     int fd = ntohl( clientMsg->arguments.read.fd);
     int size  = ntohl(clientMsg->arguments.read.read_size);
 
+    fd = Storage::instance().getFD( fd);
 
     char * buffer = (char*) malloc(size);
 
@@ -52,6 +55,8 @@ void handleWriteFileRequest(client_msg *clientMsg, char **response) {
     int size  = ntohl(clientMsg->arguments.write.write_size);
     char * buffer = (char*) clientMsg->arguments.write.data;
 
+    fd = Storage::instance().getFD( fd);
+
     ssize_t bytesWritten = write(fd,buffer,size);
 
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
@@ -69,6 +74,9 @@ void handleLSeekFileRequest(client_msg *clientMsg, char **response)
 {
     std::cout<<"lseek file request"<<std::endl;
     int fd = ntohl( clientMsg->arguments.lseek.fd);
+
+    fd = Storage::instance().getFD( fd);
+
     off_t offset  = ntohl(clientMsg->arguments.lseek.offset);
     int whence  = ntohl(clientMsg->arguments.lseek.whence);
 
@@ -87,7 +95,11 @@ void handleCloseFileRequest(client_msg *clientMsg, char **response)
     std::cout<<"close file request"<<std::endl;
     int fd = ntohl( clientMsg->arguments.close.fd);
 
+    fd = Storage::instance().getFD( fd);
+
     int closeStatus = close(fd);
+
+    Storage::instance().removeFD( fd);
 
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));
 
@@ -124,6 +136,9 @@ void handleFstatFileRequest(client_msg *clientMsg, char **response)
     int         status;
 
     int fd = ntohl( clientMsg->arguments.fstat.fd);
+
+    fd = Storage::instance().getFD( fd);
+
     status = fstat(fd, &buffer);
 
     auto *serverMsg = (server_msg*) malloc(sizeof(server_msg ));

@@ -25,7 +25,7 @@ struct client_read {
 struct client_write {
     unsigned int fd;
     unsigned int write_size;
-    void *data;
+    char data[1024];
 };
 
 struct client_lseek {

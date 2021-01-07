@@ -18,7 +18,7 @@ struct server_close {
 
 struct server_read {
     unsigned int size;
-    char data[];
+    char data[1024];
 };
 
 struct server_write {

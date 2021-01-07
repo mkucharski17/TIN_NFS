@@ -122,6 +122,12 @@
 		<Unit filename="/home/stasiek/Desktop/tin_proj/TIN_NFS/client/send_message/send_message.h">
 			<Option target="client"/>
 		</Unit>
+		<Unit filename="/home/stasiek/Desktop/tin_proj/TIN_NFS/client/storage/DirStorage.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/stasiek/Desktop/tin_proj/TIN_NFS/client/storage/DirStorage.h">
+			<Option target="client"/>
+		</Unit>
 		<Unit filename="/home/stasiek/Desktop/tin_proj/TIN_NFS/client/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

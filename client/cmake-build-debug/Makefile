@@ -305,6 +305,33 @@ send_message/send_message.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/send_message/send_message.cpp.s
 .PHONY : send_message/send_message.cpp.s
 
+storage/DirStorage.o: storage/DirStorage.cpp.o
+
+.PHONY : storage/DirStorage.o
+
+# target to build an object file
+storage/DirStorage.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/storage/DirStorage.cpp.o
+.PHONY : storage/DirStorage.cpp.o
+
+storage/DirStorage.i: storage/DirStorage.cpp.i
+
+.PHONY : storage/DirStorage.i
+
+# target to preprocess a source file
+storage/DirStorage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/storage/DirStorage.cpp.i
+.PHONY : storage/DirStorage.cpp.i
+
+storage/DirStorage.s: storage/DirStorage.cpp.s
+
+.PHONY : storage/DirStorage.s
+
+# target to generate assembly for a file
+storage/DirStorage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/storage/DirStorage.cpp.s
+.PHONY : storage/DirStorage.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -332,6 +359,9 @@ help:
 	@echo "... send_message/send_message.o"
 	@echo "... send_message/send_message.i"
 	@echo "... send_message/send_message.s"
+	@echo "... storage/DirStorage.o"
+	@echo "... storage/DirStorage.i"
+	@echo "... storage/DirStorage.s"
 .PHONY : help
 
 

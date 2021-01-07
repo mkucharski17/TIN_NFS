@@ -103,9 +103,22 @@ CMakeFiles/client.dir/fileOperations.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/fileOperations.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stasiek/Desktop/tin_proj/TIN_NFS/client/fileOperations.cpp -o CMakeFiles/client.dir/fileOperations.cpp.s
 
+CMakeFiles/client.dir/storage/DirStorage.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/storage/DirStorage.cpp.o: ../storage/DirStorage.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/storage/DirStorage.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/storage/DirStorage.cpp.o -c /home/stasiek/Desktop/tin_proj/TIN_NFS/client/storage/DirStorage.cpp
+
+CMakeFiles/client.dir/storage/DirStorage.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/storage/DirStorage.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stasiek/Desktop/tin_proj/TIN_NFS/client/storage/DirStorage.cpp > CMakeFiles/client.dir/storage/DirStorage.cpp.i
+
+CMakeFiles/client.dir/storage/DirStorage.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/storage/DirStorage.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stasiek/Desktop/tin_proj/TIN_NFS/client/storage/DirStorage.cpp -o CMakeFiles/client.dir/storage/DirStorage.cpp.s
+
 CMakeFiles/client.dir/main.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/main.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/main.cpp.o -c /home/stasiek/Desktop/tin_proj/TIN_NFS/client/main.cpp
 
 CMakeFiles/client.dir/main.cpp.i: cmake_force
@@ -118,7 +131,7 @@ CMakeFiles/client.dir/main.cpp.s: cmake_force
 
 CMakeFiles/client.dir/file/open/open.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/file/open/open.cpp.o: ../file/open/open.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/client.dir/file/open/open.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/file/open/open.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/file/open/open.cpp.o -c /home/stasiek/Desktop/tin_proj/TIN_NFS/client/file/open/open.cpp
 
 CMakeFiles/client.dir/file/open/open.cpp.i: cmake_force
@@ -131,7 +144,7 @@ CMakeFiles/client.dir/file/open/open.cpp.s: cmake_force
 
 CMakeFiles/client.dir/authorization/authorization.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/authorization/authorization.cpp.o: ../authorization/authorization.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/client.dir/authorization/authorization.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/client.dir/authorization/authorization.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/authorization/authorization.cpp.o -c /home/stasiek/Desktop/tin_proj/TIN_NFS/client/authorization/authorization.cpp
 
 CMakeFiles/client.dir/authorization/authorization.cpp.i: cmake_force
@@ -144,7 +157,7 @@ CMakeFiles/client.dir/authorization/authorization.cpp.s: cmake_force
 
 CMakeFiles/client.dir/send_message/send_message.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/send_message/send_message.cpp.o: ../send_message/send_message.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/client.dir/send_message/send_message.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/client.dir/send_message/send_message.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/send_message/send_message.cpp.o -c /home/stasiek/Desktop/tin_proj/TIN_NFS/client/send_message/send_message.cpp
 
 CMakeFiles/client.dir/send_message/send_message.cpp.i: cmake_force
@@ -159,6 +172,7 @@ CMakeFiles/client.dir/send_message/send_message.cpp.s: cmake_force
 client_OBJECTS = \
 "CMakeFiles/client.dir/directoryOperations.cpp.o" \
 "CMakeFiles/client.dir/fileOperations.cpp.o" \
+"CMakeFiles/client.dir/storage/DirStorage.cpp.o" \
 "CMakeFiles/client.dir/main.cpp.o" \
 "CMakeFiles/client.dir/file/open/open.cpp.o" \
 "CMakeFiles/client.dir/authorization/authorization.cpp.o" \
@@ -169,13 +183,14 @@ client_EXTERNAL_OBJECTS =
 
 client: CMakeFiles/client.dir/directoryOperations.cpp.o
 client: CMakeFiles/client.dir/fileOperations.cpp.o
+client: CMakeFiles/client.dir/storage/DirStorage.cpp.o
 client: CMakeFiles/client.dir/main.cpp.o
 client: CMakeFiles/client.dir/file/open/open.cpp.o
 client: CMakeFiles/client.dir/authorization/authorization.cpp.o
 client: CMakeFiles/client.dir/send_message/send_message.cpp.o
 client: CMakeFiles/client.dir/build.make
 client: CMakeFiles/client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

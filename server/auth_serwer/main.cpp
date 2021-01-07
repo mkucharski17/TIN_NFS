@@ -100,12 +100,9 @@ void getClientAuthorizationMsg(int new_socket) {
       command += std::to_string(new_server_port);
       command += "\"'";
       system(command.c_str());
-
-      send(new_socket, response, sizeof(server_msg), 0);
-      std::cout << "response is sent" << std::endl;
-    } else {
-      perror("Couldn't handle connection request!");
     }
+    send(new_socket, response, sizeof(server_msg), 0);
+    std::cout << "response is sent" << std::endl;
 }
 
 
@@ -125,7 +122,10 @@ unsigned int handleConnectionRequest(client_msg *clientAuthMsg, char **response)
         *response = (char *) response_auth;
         return new_server_port;
     } else {
-         perror("Authorization failed");
+        std::cout << "Incorrect authorization with account: " << clientAuthMsg->arguments.connection.login << std::endl;
+        response_auth->response_type = CONNECTION_RESPONSE;
+        response_auth->error = ERROR;
+        *response = (char *) response_auth;
         return 0;
     }
 }

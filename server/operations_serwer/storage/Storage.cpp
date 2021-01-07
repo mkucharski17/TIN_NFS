@@ -20,6 +20,7 @@ int Storage::getFD(int fd)
 }
 int Storage::addFD(int fd)
 {
+    if(fd == -1) return -1;
     fileMap.insert({ lastFD, fd });
     return lastFD++;
 }

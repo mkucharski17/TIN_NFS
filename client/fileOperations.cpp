@@ -20,7 +20,7 @@ int mynfs_read(int fd, void *buf, int count)
     return len;
 }
 
-int mynfs_write(int fd,  void *buf, int count)
+int mynfs_write(int fd,  const void *buf, int count)
 {
     client_msg clientMsg;
     server_msg *serverMsg;
@@ -73,7 +73,7 @@ int mynfs_close(int fd) {
     return status;
 }
 
-int mynfs_unlink(char *host, char *path) {
+int mynfs_unlink(char *path) {
     client_msg clientMsg;
     server_msg *serverMsg;
 

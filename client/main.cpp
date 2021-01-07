@@ -53,7 +53,7 @@ void openDirectory() {
     std::cin >> path;
     std::cout << "path: " << path << "\n";
     int dir_fd = mynfs_opendir((char*) current_connection.first, (char*) path.c_str());
-    if(fd ==-1) {
+    if(dir_fd == -1) {
         std::cout<<"An error occured during dir opening\n";
         fprintf(stderr, "Value of errno: %d\n", errno);
         return;

@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/fileOperations.cpp" "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/fileOperations.cpp.o"
   "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/main.cpp" "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/main.cpp.o"
   "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/send_message/send_message.cpp" "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/send_message/send_message.cpp.o"
+  "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/storage/DirStorage.cpp" "/home/stasiek/Desktop/tin_proj/TIN_NFS/client/cmake-build-debug/CMakeFiles/client.dir/storage/DirStorage.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

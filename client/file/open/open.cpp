@@ -1,10 +1,8 @@
-//
-
-#include <data_structures/client_msg.h>
-#include <data_structures/codes.h>
-#include <data_structures/server_msg.h>
+#include "../../data_structures/client_msg.h"
+#include "../../data_structures/codes.h"
+#include "../../data_structures/server_msg.h"
 #include <cstring>
-#include <send_message/send_message.h>
+#include "../../send_message/send_message.h"
 #include "open.h"
 
 unsigned int mynfs_open (char *host, char *path, int oflag, int mode) {

@@ -14,17 +14,17 @@ void Storage::remove(int fd) {
     map.erase(fd);
 }
 
-int getFD(int fd)
+int Storage::getFD(int fd)
 {
     return fileMap.find(fd)->second;
 }
-int addFD(int fd)
+int Storage::addFD(int fd)
 {
-    fileMap.insert({ lastFD, dir });
+    fileMap.insert({ lastFD, fd });
     return lastFD++;
 }
-    
-void removeFD(int fd)
+
+void Storage::removeFD(int fd)
 {
     fileMap.erase(fd);
 }

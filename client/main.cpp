@@ -1,5 +1,5 @@
-#include <data_structures/codes.h>
-#include <authorization//authorization.h>
+#include "data_structures/codes.h"
+#include "authorization//authorization.h"
 #include <iostream>
 #include "storage/DirStorage.h"
 #include "directoryOperations.h"
@@ -96,6 +96,12 @@ int printMenu() {
     int input;
     do{
         std::cin >> input;
+        while(std::cin.fail()) {
+            std::cout << "Error wrong input!" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(256,'\n');
+            std::cin >> input;
+        }
     }while((input < -1 || input > 11) && input != 15);
     return 2*input;
 }

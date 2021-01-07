@@ -8,7 +8,7 @@ class Storage {
 private:
     std::unordered_map<int, DIR*> map;
     std::unordered_map<int, int> fileMap;
-    static int lastFD = 9000;
+    int lastFD = 9000;
     Storage();
 public:
     static Storage& instance() {
@@ -20,7 +20,7 @@ public:
     void remove(int fd);
 
     //do plików
-     int getFD(int fd);
+    int getFD(int fd);
     int addFD(int fd) ;
     void removeFD(int fd);
 };

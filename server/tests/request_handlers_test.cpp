@@ -60,7 +60,7 @@ SCENARIO("handleWriteFileRequest test", "[WriteFile]" ) {
         client_msg clientAuthMsg {
             .request_type = WRITE_FILE_REQUEST,
             .arguments {
-                .write { htonl(id), htonl(10), (char*) "write test" }
+                .write { htonl(id), htonl(10), "write test" }
             }
         };
         char *response;

@@ -2,6 +2,7 @@
 #include "catch.hpp"
 #include <unistd.h>
 #include <dirent.h>
+#include <fstream>
 #include "../operations_serwer/request_handlers/request_handlers.h"
 
 SCENARIO("handleOpenFileRequest test", "[OpenFile]" ) {
@@ -21,7 +22,7 @@ SCENARIO("handleOpenFileRequest test", "[OpenFile]" ) {
 
             THEN("the response has type OPEN_FILE_RESPONSE and fd > 0") {
                 REQUIRE( serverResponse->response_type == OPEN_FILE_RESPONSE );
-                REQUIRE( serverResponse->response.open.fd > 0 );
+                REQUIRE( ntohl(serverResponse->response.open.fd) > 0 );
             }
         }
     }
@@ -45,7 +46,7 @@ SCENARIO("handleReadFileRequest test", "[ReadFile]" ) {
 
             THEN("the response has type READ_FILE_RESPONSE and read size == 4") {
                 REQUIRE( serverResponse->response_type == READ_FILE_RESPONSE );
-                REQUIRE( serverResponse->response.read.size == 4 );
+                REQUIRE( ntohl(serverResponse->response.read.size) == 4 );
             }
         }
     }
@@ -69,7 +70,7 @@ SCENARIO("handleWriteFileRequest test", "[WriteFile]" ) {
 
             THEN("the response has type WRITE_FILE_RESPONSE and write size == 10") {
                 REQUIRE( serverResponse->response_type == WRITE_FILE_RESPONSE );
-                REQUIRE( serverResponse->response.write.size == 4 );
+                REQUIRE( ntohl(serverResponse->response.write.size) == 10 );
             }
         }
     }
@@ -93,7 +94,7 @@ SCENARIO("handleLSeekFileRequest test", "[LSeekFile]" ) {
 
             THEN("the response has type LSEEK_FILE_RESPONSE and ") {
                 REQUIRE( serverResponse->response_type == LSEEK_FILE_RESPONSE );
-                REQUIRE( serverResponse->response.lseek.offset == 1 );
+                REQUIRE( ntohl(serverResponse->response.lseek.offset) == 1 );
             }
         }
     }
@@ -143,6 +144,10 @@ SCENARIO("handleUnlinkFileRequest test", "[UnlinkFile]" ) {
                 REQUIRE( serverResponse->response.unlink.status == 0 );
             }
         }
+        std::ofstream test_file;
+        test_file.open("test_dir/test_file.txt");
+        test_file << "test";
+        test_file.close();
     }
 }
 
@@ -192,7 +197,7 @@ SCENARIO("handleOpenDirRequest test", "[OpenDir]" ) {
         client_msg clientAuthMsg {
             .request_type = OPEN_DIR_REQUEST,
             .arguments {
-                .opendir { "test_dir/test_file.txt" }
+                .opendir { "test_dir" }
             }
         };
         char *response;
@@ -204,7 +209,7 @@ SCENARIO("handleOpenDirRequest test", "[OpenDir]" ) {
 
             THEN("the response has type OPEN_DIR_RESPONSE and fd > 0") {
                 REQUIRE( serverResponse->response_type == OPEN_DIR_RESPONSE );
-                REQUIRE( serverResponse->response.opendir.fd > 0 );
+                REQUIRE( ntohl(serverResponse->response.opendir.dir_fd) > 0 );
             }
         }
     }
@@ -236,7 +241,9 @@ SCENARIO("handleReadDirRequest test", "[ReadDir]" ) {
 
 SCENARIO("handleCloseDirRequest test", "[CloseDir]" ) {
     GIVEN("Client message CLOSE_DIR_REQUEST") {
-        int dir_fd = dirfd(opendir("test_dir"));
+        auto dird = opendir("test_dir");
+        int dir_fd = dirfd(dird);
+        Storage::instance().add(dir_fd, dird);
         client_msg clientAuthMsg {
             .request_type = CLOSE_DIR_REQUEST,
             .arguments {

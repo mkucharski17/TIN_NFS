@@ -33,7 +33,7 @@ SCENARIO("handleReadFileRequest test", "[ReadFile]" ) {
         client_msg clientAuthMsg {
             .request_type = READ_FILE_REQUEST,
             .arguments {
-                .read { fd, 10 }
+                .read { htonl(fd), htonl(10) }
             }
         };
         char *response;
@@ -57,7 +57,7 @@ SCENARIO("handleWriteFileRequest test", "[WriteFile]" ) {
         client_msg clientAuthMsg {
             .request_type = WRITE_FILE_REQUEST,
             .arguments {
-                .write { fd, 10, (char*) "write test" }
+                .write { htonl(fd), htonl(10), (char*) "write test" }
             }
         };
         char *response;
@@ -77,11 +77,11 @@ SCENARIO("handleWriteFileRequest test", "[WriteFile]" ) {
 
 SCENARIO("handleLSeekFileRequest test", "[LSeekFile]" ) {
     GIVEN("File descriptor, offset and whence") {
-        int fd = open("test_dir/test_file.txt", O_RDWR, 0)
+        int fd = open("test_dir/test_file.txt", O_RDWR, 0);
         client_msg clientAuthMsg {
             .request_type = LSEEK_FILE_REQUEST,
             .arguments {
-                .lseek { fd, 1, 0 }
+                .lseek { htonl(fd), htonl(1), htonl(0) }
             }
         };
         char *response;
@@ -105,7 +105,7 @@ SCENARIO("handleCloseFileRequest test", "[CloseFile]" ) {
         client_msg clientAuthMsg {
             .request_type = CLOSE_FILE_REQUEST,
             .arguments {
-                .close { fd }
+                .close { htonl(fd) }
             }
         };
         char *response;
@@ -152,7 +152,7 @@ SCENARIO("handleFstatFileRequest test", "[FstatFile]" ) {
         client_msg clientAuthMsg {
             .request_type = UNLINK_FILE_REQUEST,
             .arguments {
-                .fstat { fd }
+                .fstat { htonl(fd) }
             }
         };
         char *response;
@@ -212,11 +212,11 @@ SCENARIO("handleOpenDirRequest test", "[OpenDir]" ) {
 
 SCENARIO("handleReadDirRequest test", "[ReadDir]" ) {
     GIVEN("Client message READ_DIR_REQUEST") {
-        int dir_fd = opendir("test_dir");
+        int dir_fd = dirfd(opendir("test_dir"));
         client_msg clientAuthMsg {
             .request_type = READ_DIR_REQUEST,
             .arguments {
-                .readdir { dir_fd }
+                .readdir { htonl(dir_fd) }
             }
         };
         char *response;
@@ -236,11 +236,11 @@ SCENARIO("handleReadDirRequest test", "[ReadDir]" ) {
 
 SCENARIO("handleCloseDirRequest test", "[CloseDir]" ) {
     GIVEN("Client message CLOSE_DIR_REQUEST") {
-        int dir_fd = opendir("test_dir");
+        int dir_fd = dirfd(opendir("test_dir"));
         client_msg clientAuthMsg {
             .request_type = CLOSE_DIR_REQUEST,
             .arguments {
-                .closedir { dir_fd }
+                .closedir { htonl(dir_fd) }
             }
         };
         char *response;

@@ -53,14 +53,18 @@ void openDirectory() {
     std::cin >> path;
     std::cout << "path: " << path << "\n";
     int dir_fd = mynfs_opendir((char*) current_connection.first, (char*) path.c_str());
+    if(fd ==-1) {
+        std::cout<<"An error occured during dir opening\n";
+        fprintf(stderr, "Value of errno: %d\n", errno);
+        return;
+    }
     DirStorage::instance().add(path, dir_fd);
 }
 
 void readDirectory() {
-    if(DirStorage::instance().dirEmpty())
-    {
-	std::cout << "There is no open directory!\n";
-	return;
+    if(DirStorage::instance().dirEmpty()) {
+        std::cout << "There is no open directory!\n";
+        return;
     }
     int index = 0;
     std::cout << "Choose directory to read:\n";
@@ -78,10 +82,9 @@ void readDirectory() {
 }
 
 void closeDirectory() {
-    if(DirStorage::instance().dirEmpty())
-    {
-	std::cout << "There is no open directory!\n";
-	return;
+    if(DirStorage::instance().dirEmpty()) {
+        std::cout << "There is no open directory!\n";
+        return;
     }
     int index = 0;
     std::cout << "Choose directory to close:\n";
@@ -128,12 +131,10 @@ void openFile() {
     DirStorage::instance().addFile(path, fd);
 }
 
-int readFile()
-{
-    if(DirStorage::instance().fileEmpty())
-    {
-	std::cout << "There is no open file!\n";
-	return -1;
+int readFile() {
+    if(DirStorage::instance().fileEmpty()) {
+        std::cout << "There is no open file!\n";
+        return -1;
     }
     int index = 0;
     std::cout << "Choose file to read:\n";
@@ -143,25 +144,22 @@ int readFile()
         try {
             int fd = DirStorage::instance().getFile(index).second;
 		
-	    int bytes_number;
+            int bytes_number;
             std::cout<< "How many bytes read:\n";
-	    std::cin >> bytes_number;
-	    if(bytes_number == 0 || bytes_number>1023) 
-            {
-                std::cout<<"invalid bytes number\n";
-                return -1;
+            std::cin >> bytes_number;
+            if(bytes_number == 0 || bytes_number>1023) {
+                    std::cout<<"invalid bytes number\n";
+                    return -1;
             }
             void* buffer;
-	    buffer = (void*)malloc(bytes_number*sizeof(char));
+            buffer = (void*)malloc(bytes_number*sizeof(char));
 
             int result = mynfs_read(fd, buffer , bytes_number);
-            if(result ==-1) 
-            {
+            if(result ==-1) {
                 //błąd
                 std::cout<<"An error occured during reading\n";
                 fprintf(stderr, "Value of errno: %d\n", errno);
                 return -1;
-
             }
             std::cout << "Bytes read: " << (char*)buffer<<std::endl;
             return 0;
@@ -170,12 +168,10 @@ int readFile()
         }
     }
 }
-int writeFile()
-{
-    if(DirStorage::instance().fileEmpty())
-    {
-	std::cout << "There is no open file!\n";
-	return -1;
+int writeFile() {
+    if(DirStorage::instance().fileEmpty()) {
+        std::cout << "There is no open file!\n";
+        return -1;
     }
     int index = 0;
     std::cout << "Choose file to write:\n";
@@ -188,8 +184,7 @@ int writeFile()
             
             std::cout << "Write text:" << std::endl;
             std::getline(std::cin >> std::ws, text);
-            if(text.length()==0 || text.length()>1023) 
-            {
+            if(text.length()==0 || text.length()>1023) {
                 std::cout<<"invalid text length\n";
                 return -1;
             }
@@ -197,13 +192,11 @@ int writeFile()
             strcpy(char_array, text.c_str());
 
             int result = mynfs_write(fd, &char_array , text.length());
-            if(result ==-1) 
-            {
+            if(result ==-1) {
                 //błąd
                 std::cout<<"An error occured during writing\n";
                 fprintf(stderr, "Value of errno: %d\n", errno);
                 return -1;
-
             }
             std::cout << "Bytes written:" << result<<std::endl;
             return 0;
@@ -212,12 +205,10 @@ int writeFile()
         }
     }
 }
-void lSeekFile()
-{
-    if(DirStorage::instance().fileEmpty())
-    {
-	std::cout << "There is no open file!\n";
-	return;
+void lSeekFile() {
+    if(DirStorage::instance().fileEmpty()) {
+        std::cout << "There is no open file!\n";
+        return;
     }
     int index = 0;
     std::cout << "Choose file to lseek:\n";
@@ -231,8 +222,7 @@ void lSeekFile()
             
             std::cout << "Write offset:" << std::endl;
             std::cin>>offset;
-            if(offset<0) 
-            {
+            if(offset<0) {
                 std::cout<<"invalid offset\n";
                 return ;
             }
@@ -243,21 +233,18 @@ void lSeekFile()
             std::cout << "2. SEEK_END\n";
             std::cin >> whence;
             
-            if(whence<0 || whence >2) 
-            {
+            if(whence<0 || whence >2) {
                 std::cout<<"invalid whence\n";
                 return ;
             }
             int result = mynfs_lseek( fd,  offset, whence); 
 
-            if(result ==-1) 
-            {
+            if(result ==-1) {
                 //błąd
                 std::cout<<"An error occured during writing\n";
                 fprintf(stderr, "Value of errno: %d\n", errno);
                 return;
-
-            } 
+            }
             return;
         } catch (const std::out_of_range& e) {
             std::cout << "Index out of range!\n";
@@ -266,12 +253,10 @@ void lSeekFile()
 }
 
 
-void closeFile()
-{
-    if(DirStorage::instance().fileEmpty())
-    {
-	std::cout << "There is no open file!\n";
-	return;
+void closeFile() {
+    if(DirStorage::instance().fileEmpty()) {
+        std::cout << "There is no open file!\n";
+        return;
     }
     int index = 0;
     std::cout << "Choose file to close:\n";
@@ -282,26 +267,23 @@ void closeFile()
            int fd = DirStorage::instance().getFile(index).second;
             
            int result= mynfs_close(fd);
-           if(result ==-1) 
-            {
+           if(result ==-1) {
                 //błąd
                 std::cout<<"An error occured during closing\n";
                 fprintf(stderr, "Value of errno: %d\n", errno);
                 return;
-
             } else {
-		DirStorage::instance().removeFile(fd);
-            	std::cout<<"File is closed\n";
-		return;
-	    }
+                DirStorage::instance().removeFile(fd);
+                std::cout<<"File is closed\n";
+                return;
+            }
         } catch (const std::out_of_range& e) {
             std::cout << "Index out of range!\n";
         }
     }
 }
 
-void unlinkFile()
-{
+void unlinkFile() {
     std::string path;
     std::cout << "Provide file path:\n";
     std::cin >> path;
@@ -309,24 +291,19 @@ void unlinkFile()
 
     int result= mynfs_unlink((char*) path.c_str()) ;
 
-    if(result ==-1) 
-    {
+    if(result ==-1) {
         //błąd
         std::cout<<"An error occured during unlinking\n";
         fprintf(stderr, "Value of errno: %d\n", errno);
         return;
     } 
     std::cout<<"File is unlinked\n";
-
-    
 }
 
-void fstatFile()
-{
-    if(DirStorage::instance().fileEmpty())
-    {
-	std::cout << "There is no open file!\n";
-	return;
+void fstatFile() {
+    if(DirStorage::instance().fileEmpty()) {
+        std::cout << "There is no open file!\n";
+        return;
     }
     int index = 0;
     std::cout << "Choose file to fstat:\n";
@@ -339,17 +316,13 @@ void fstatFile()
             struct stat file_stats;
            int result= mynfs_fstat(fd,&file_stats);
 
-            
-            if(result ==-1) 
-            {
+            if(result ==-1) {
                 //błąd
                 std::cout<<"An error occured during fstat\n";
                 fprintf(stderr, "Value of errno: %d\n", errno);
                 return;
-
             }
 
-           
             printf(" device: %lld\n",                       file_stats.st_dev);
             printf(" inode: %ld\n",                         file_stats.st_ino);
             printf(" protection: %o\n",                     file_stats.st_mode);

@@ -7,7 +7,7 @@ void handleOpenFileRequest(client_msg *clientAuthMsg, char **response) {
     std::cout << "mode : " << clientAuthMsg->arguments.open.mode << "\n";
     int32_t fd;
     fd = open((char *) clientAuthMsg->arguments.open.path, (int)clientAuthMsg->arguments.open.oflag,
-              clientAuthMsg->arguments.open.mode);    
+              (int)clientAuthMsg->arguments.open.mode);    
     
     int newFD = Storage::instance().addFD(fd);
 

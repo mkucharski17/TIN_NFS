@@ -40,8 +40,8 @@
 #define DISCONNECT_REQUEST 22
 
 /// file mode
-#define O_RDONLY 0
-#define O_WRONLY 1
-#define O_RDWR 2
-#define O_CREAT 3
+#define O_RDONLY 00
+#define O_WRONLY 01
+#define O_RDWR 02
+#define O_CREAT 0100
 #endif //TIN_NFS_CODES_H

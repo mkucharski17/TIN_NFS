@@ -107,7 +107,14 @@ void openFile() {
     std::cout << "Provide file path:\n";
     std::cin >> path;
     std::cout << "path: " << path << "\n";
-    
+
+    int newFile = 1;
+    std::cout << "Create new file if it doesn't exist?\n";
+     std::cout << "0. no\n";
+    std::cout << "1. yes\n";
+    std::cin >> newFile;  
+
+
     int oflag;
     std::cout << "Choose file access flag:\n";
     std::cout << "0. read-only\n";
@@ -115,11 +122,73 @@ void openFile() {
     std::cout << "2. read/write\n";
     std::cin >> oflag;
 
-    int mode;
+    std::string modeInputString;
     std::cout << "Provide mode:\n";
-    std::cin >> mode;
+    std::cin >> modeInputString;
+    char *inputMode = new char[modeInputString.length()+1];
+    strcpy(inputMode, modeInputString.c_str());
+    mode_t mode;
+    if (inputMode[0] == 'r')
+  	mode |= 0400;
+    if (inputMode[1] == 'w')
+        mode |= 0200;
+    if (inputMode[2] == 'x')
+      mode |= 0100;
+    if (inputMode[3] == 'r')
+      mode |= 0040;
+    if (inputMode[4] == 'w')
+      mode |= 0020;
+    if (inputMode[5] == 'x')
+      mode |= 0010;
+    if (inputMode[6] == 'r')
+      mode |= 0004;
+    if (inputMode[7] == 'w')
+      mode |= 0002;
+    if (inputMode[8] == 'x')
+      mode |= 0001;
+    int intMode = mode;
 
-    int fd =  mynfs_open ( (char*) path.c_str(),  oflag,  mode);
+    int fd;
+    if(newFile == 1)
+    {
+        if(oflag ==0 )
+        {
+            fd =  mynfs_open ( (char*) path.c_str(),  O_RDONLY | O_CREAT,  intMode);
+        }else if(oflag ==1 )
+        {
+            fd =  mynfs_open ( (char*) path.c_str(),  O_WRONLY | O_CREAT,  intMode);
+        }else if(oflag ==2 )
+        {
+            fd =  mynfs_open ( (char*) path.c_str(), O_RDWR | O_CREAT,  intMode);
+        }else
+        {
+             std::cout <<"Wrong input\n";
+        }
+    }
+    else if(newFile == 0)
+    {
+       if(oflag ==0 )
+        {
+            fd =  mynfs_open ( (char*) path.c_str(),  O_RDONLY ,  intMode);
+        }else if(oflag ==1 )
+        {
+            fd =  mynfs_open ( (char*) path.c_str(),  O_WRONLY ,  intMode);
+        }else if(oflag ==2 )
+        {
+            fd =  mynfs_open ( (char*) path.c_str(),  O_RDWR,  intMode);
+        }else
+        {
+             std::cout <<"Wrong input\n";
+        }
+    }
+    else
+    {
+        std::cout <<"Wrong input\n";
+    }
+    
+    
+
+     
 
     if(fd ==-1)
     {
@@ -161,7 +230,9 @@ int readFile() {
                 fprintf(stderr, "Value of errno: %d\n", errno);
                 return -1;
             }
-            std::cout << "Bytes read: " << (char*)buffer<<std::endl;
+	    char* output_text = (char*)malloc(bytes_number*sizeof(char));
+            strncpy(output_text, (char*)buffer, bytes_number);
+            std::cout << "Bytes read: " << output_text <<std::endl;
             return 0;
         } catch (const std::out_of_range& e) {
             std::cout << "Index out of range!\n";
